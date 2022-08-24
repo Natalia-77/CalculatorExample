@@ -157,6 +157,8 @@ csharp_style_allow_blank_lines_between_consecutive_braces_experimental = true:si
 csharp_style_prefer_parameter_null_checking = true:suggestion
 csharp_style_prefer_switch_expression = true:suggestion
 csharp_style_prefer_pattern_matching = true:silent
+csharp_style_prefer_not_pattern = true:suggestion
+csharp_style_prefer_extended_property_pattern = true:suggestion
 ###############################
 # VB Coding Conventions       #
 ###############################

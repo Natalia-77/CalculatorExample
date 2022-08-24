@@ -14,12 +14,12 @@ namespace CalculatorOperations.CompleteMathExpressions
             decimal value;
             switch (operationsTypes)
             {
-                case OperationTypes.Sum:
+                case OperationTypes.Square:
                     _singleValue = new SquareRootSingleNumber();
                     value = _singleValue.Execute(singleValue);
                     break;
 
-                case OperationTypes.Substrat:
+                case OperationTypes.Module:
                     _singleValue = new ModuleSingleNumber();
                     value = _singleValue.Execute(singleValue);
                     break;
