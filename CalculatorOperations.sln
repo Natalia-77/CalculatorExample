@@ -5,7 +5,12 @@ VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculatorOperations", "CalculatorOperations\CalculatorOperations.csproj", "{EA0E9B87-AE2B-4EC7-810C-11EE15ED6283}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Console.UI", "Calculator.Console.UI\Calculator.Console.UI.csproj", "{BF15E05C-A382-45BA-87A5-FA0CC26208ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator.Console.UI", "Calculator.Console.UI\Calculator.Console.UI.csproj", "{BF15E05C-A382-45BA-87A5-FA0CC26208ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{80854D4D-E769-4486-A14F-6366236C1C1F}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

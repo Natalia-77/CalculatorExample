@@ -3,7 +3,7 @@ using CalculatorOperations.MathOperationsTypes;
 
 namespace CalculatorOperations.CompleteMathExpressions.Interfaces
 {
-    internal interface ISingleValueExpression
+    public interface ISingleValueExpression
     {
         decimal GetMathExpression(decimal singleValue, OperationTypes operationsTypes);
 

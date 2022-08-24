@@ -2,7 +2,7 @@
 
 namespace CalculatorOperations.Operations
 {
-    internal class SubtractTwoNumbers : IDoubleValueOperands
+    public class SubtractTwoNumbers : IDoubleValueOperands
     {
         public decimal Execute(decimal firstValue, decimal secondValue)
         {
