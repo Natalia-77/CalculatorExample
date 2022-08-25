@@ -1,5 +1,4 @@
-﻿
-using System.CommandLine;
+﻿using System.CommandLine;
 using CalculatorOperations;
 
 namespace Calculator.Console.UI
@@ -16,12 +15,9 @@ namespace Calculator.Console.UI
             
             rootCommand.SetHandler((singleArgumentValue, operationValue) =>
             {
-
-            try
+                try
                 {
-                    CalculatorOperations.MathOperationsTypes.OperationTypes type = 0;
-                    System.Console.WriteLine(singleArgumentValue);
-                    System.Console.WriteLine(operationValue);
+                    CalculatorOperations.MathOperationsTypes.OperationTypes type = 0;                    
                     decimal res = 0;
                     switch (operationValue)
                     {

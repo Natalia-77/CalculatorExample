@@ -9,15 +9,13 @@ namespace Calculator.Console.UI
         {
             var firstArgument = new Argument<decimal>("first", "First argument ");
             var operation = new Argument<string>("operation", "Operation of expression");
-            var secondArgument = new Argument<decimal>("second", "Second argument");
-            //var singleArgument = new Argument<decimal>("single", "Single argument");
+            var secondArgument = new Argument<decimal>("second", "Second argument");           
 
             RootCommand rootCommand = new RootCommand();
-            rootCommand.Add(firstArgument);
-           
-           // rootCommand.Add(singleArgument);
+            rootCommand.Add(firstArgument);          
             rootCommand.Add(operation);
             rootCommand.Add(secondArgument);
+
             rootCommand.SetHandler((firstArgumentValue, operationValue, secondArgumentValue) =>
             {
 

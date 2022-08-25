@@ -15,4 +15,19 @@
     <ProjectReference Include="..\CalculatorOperations\CalculatorOperations.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="CommandTitlesResourse.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommandTitlesResourse.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="CommandTitlesResourse.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommandTitlesResourse.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
