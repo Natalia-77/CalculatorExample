@@ -6,7 +6,9 @@ namespace CalculatorOperations.Operations
     {
         public decimal Execute(decimal firstValue, decimal secondValue)
         {
-            return firstValue * secondValue;
+            if (secondValue == 0)
+                throw new ArithmeticException("Divided by zero");
+            return firstValue / secondValue;
         }
     }
 }

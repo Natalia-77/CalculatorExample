@@ -3,7 +3,7 @@ using CalculatorOperations;
 
 namespace Calculator.Console.UI
 {
-    internal class DoubleArgumentExpression
+    public static class DoubleArgumentExpression
     {
         public static Command GetTwoArgumentsCommand()
         {
@@ -29,7 +29,7 @@ namespace Calculator.Console.UI
                     case "-":
                         type = CalculatorOperations.MathOperationsTypes.OperationTypes.Substrat;
                         break;
-                    case "*":
+                    case "/":
                         type = CalculatorOperations.MathOperationsTypes.OperationTypes.Multiple;
                         break;                    
                     default:
