@@ -6,7 +6,7 @@ namespace CalculatorOperations
 {
     public static class Provider
     {
-        public static  IDoubleValueExpression DoubleExpression => new DoubleValueExpression();
-        public static  ISingleValueExpression SingleExpression => new SingleValueExpression();
+        public static IDoubleValueExpression DoubleExpression => new DoubleValueExpression();
+        public static ISingleValueExpression SingleExpression => new SingleValueExpression();
     }
 }

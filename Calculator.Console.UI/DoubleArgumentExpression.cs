@@ -9,10 +9,9 @@ namespace Calculator.Console.UI
         {
             var firstArgument = new Argument<decimal>("first", "First argument ");
             var operation = new Argument<string>("operation", "Operation of expression");
-            var secondArgument = new Argument<decimal>("second", "Second argument");           
-
+            var secondArgument = new Argument<decimal>("second", "Second argument");
             RootCommand rootCommand = new RootCommand();
-            rootCommand.Add(firstArgument);          
+            rootCommand.Add(firstArgument);
             rootCommand.Add(operation);
             rootCommand.Add(secondArgument);
 
@@ -31,7 +30,7 @@ namespace Calculator.Console.UI
                         break;
                     case "/":
                         type = CalculatorOperations.MathOperationsTypes.OperationTypes.Multiple;
-                        break;                    
+                        break;
                     default:
                         type = 0;
                         break;
@@ -40,9 +39,9 @@ namespace Calculator.Console.UI
                 System.Console.WriteLine($"Result: {res}");
 
             }, firstArgument, operation, secondArgument);
-           
+
             return rootCommand;
         }
-       
+
     }
 }

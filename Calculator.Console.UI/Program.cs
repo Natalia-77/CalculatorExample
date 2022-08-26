@@ -5,13 +5,13 @@ using System.Resources;
 [assembly: NeutralResourcesLanguage("en")]
 namespace Calculator.Console.UI;
 
- class Program
+class Program
 {
     static Task Main(string[ ] args)
     {
         string? input;
         do
-        {           
+        {
             System.Console.WriteLine(CommandTitlesResourse.MainTitle);
             System.Console.WriteLine(CommandTitlesResourse.MainTitleSecond);
             System.Console.WriteLine(CommandTitlesResourse.MainTitleExit);
@@ -19,7 +19,7 @@ namespace Calculator.Console.UI;
             input = System.Console.ReadLine();
 
             if (input == "1" || input == "2")
-            { 
+            {
                 if (input == "1")
                 {
                     System.Console.WriteLine(CommandTitlesResourse.FirstArgs);
@@ -45,8 +45,8 @@ namespace Calculator.Console.UI;
                         args = new string[ ] { arg1, arg2, arg3 };
                     }
                     DoubleArgumentExpression.GetTwoArgumentsCommand().Invoke(args);
-                }                
-            }           
+                }
+            }
         }
         while (input != "3");
         return Task.CompletedTask;

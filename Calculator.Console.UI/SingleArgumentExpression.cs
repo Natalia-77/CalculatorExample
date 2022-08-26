@@ -6,18 +6,18 @@ namespace Calculator.Console.UI
     internal class SingleArgumentExpression
     {
         public static Command GetOneArgumentsCommand()
-        {                      
+        {
             var singleArgument = new Argument<decimal>("single", "Single argument");
             var operation = new Argument<string>("operation", "Operation of expression");
             RootCommand rootCommand = new RootCommand();
             rootCommand.Add(singleArgument);
             rootCommand.Add(operation);
-            
+
             rootCommand.SetHandler((singleArgumentValue, operationValue) =>
             {
                 try
                 {
-                    CalculatorOperations.MathOperationsTypes.OperationTypes type = 0;                    
+                    CalculatorOperations.MathOperationsTypes.OperationTypes type = 0;
                     decimal res = 0;
                     switch (operationValue)
                     {

@@ -5,8 +5,7 @@ using CalculatorOperations;
 namespace Calculator.UnitTests
 {
     public class CalculateTests
-    {     
-
+    {
         [Fact]
         public void CheckDivedeByZero()
         {
@@ -25,12 +24,10 @@ namespace Calculator.UnitTests
             string param2 = "+";
             string param3 = "2";
             //Return int,but why...there is only invoke and returns Command.
-            var expected= DoubleArgumentExpression.GetTwoArgumentsCommand().Invoke(new string[ ] { param1, param2 ,param3});
+            _ = DoubleArgumentExpression.GetTwoArgumentsCommand().Invoke(new string[ ] { param1, param2, param3 });
             // TODO...
-            //How I should re-write here for pass my test. Or where I can read about it. 
-                 
-            
-           
+            //How I should re-write here for pass my test. Or where I can read about it.
+
         }
     }
 }
