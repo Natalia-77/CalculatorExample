@@ -1,55 +1,47 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.CommandLine;
 using System.Resources;
+using System.CommandLine.NamingConventionBinder;
+
 [assembly: CLSCompliant(true)]
 [assembly: NeutralResourcesLanguage("en")]
 namespace Calculator.Console.UI;
 
 class Program
 {
-    static Task Main(string[ ] args)
+    static int Main(string[ ] args)
     {
-        string? input;
-        do
-        {
-            System.Console.WriteLine(CommandTitlesResourse.MainTitle);
-            System.Console.WriteLine(CommandTitlesResourse.MainTitleSecond);
-            System.Console.WriteLine(CommandTitlesResourse.MainTitleExit);
-            System.Console.Write(CommandTitlesResourse.Choice);
-            input = System.Console.ReadLine();
+        //var firstArgument = new Argument<decimal>("first", "First argument ");
+        //var operation = new Argument<string>("operation", "Operation of expression");
+        //var secondArgument = new Argument<decimal>("second", "Second argument");
+         var rootCommand = new RootCommand();
+        //rootCommand.Handler = CommandHandler.Create<decimal, string, decimal>(DoubleArgumentExpression.GetTwoArgumentsCommand);
+        //rootCommand.Add(firstArgument);
+        //rootCommand.Add(operation);
+        //rootCommand.Add(secondArgument);
+        //return rootCommand.Invoke(args);
 
-            if (input == "1" || input == "2")
-            {
-                if (input == "1")
-                {
-                    System.Console.WriteLine(CommandTitlesResourse.FirstArgs);
-                    var arg1 = System.Console.ReadLine();
-                    System.Console.WriteLine(CommandTitlesResourse.SecondArgs);
-                    var arg2 = System.Console.ReadLine();
-                    if (arg1 != null && arg2 != null)
-                    {
-                        args = new string[ ] { arg1, arg2 };
-                    }
-                    SingleArgumentExpression.GetOneArgumentsCommand().Invoke(args);
-                }
-                else
-                {
-                    System.Console.WriteLine(CommandTitlesResourse.FirstArgs);
-                    var arg1 = System.Console.ReadLine();
-                    System.Console.WriteLine(CommandTitlesResourse.SecondArgs);
-                    var arg2 = System.Console.ReadLine();
-                    System.Console.WriteLine(CommandTitlesResourse.ThirdArgs);
-                    var arg3 = System.Console.ReadLine();
-                    if (arg1 != null && arg2 != null && arg3 != null)
-                    {
-                        args = new string[ ] { arg1, arg2, arg3 };
-                    }
-                    DoubleArgumentExpression.GetTwoArgumentsCommand().Invoke(args);
-                }
-            }
-        }
-        while (input != "3");
-        return Task.CompletedTask;
+        var command = new Command("--add")
+        {
+               new Argument<decimal>("first", "First argument "),
+               new Argument<decimal>("second", "Second argument")
+        };
+        rootCommand.Add(command);
+        //var subtractCommand = new Command("--sub");
+        //var addCommand = new Command("--add");
+        //rootCommand.Add(addCommand);
+        //rootCommand.Add(subtractCommand);
+
+        //var firstArgument = new Argument<decimal>("first", "First argument ");
+        //var secondArgument = new Argument<decimal>("second", "Second argument");
+        //rootCommand.Add(firstArgument);
+        //rootCommand.Add(secondArgument);
+
+        //addCommand.AddArgument(firstArgument);
+        // addCommand.AddArgument(secondArgument);
+        command.Handler = CommandHandler.Create<decimal, decimal>(DoubleArgumentExpression.GetTwoArgumentsCommand);
+        return rootCommand.Invoke(args);
+
     }
 }
 

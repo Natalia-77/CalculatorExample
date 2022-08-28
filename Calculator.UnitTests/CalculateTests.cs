@@ -1,5 +1,4 @@
 ﻿using System.CommandLine;
-using Calculator.Console.UI;
 using CalculatorOperations;
 
 namespace Calculator.UnitTests
@@ -18,15 +17,9 @@ namespace Calculator.UnitTests
             Assert.Equal(expectedErrorMessage, ex.Message);
         }
         [Fact]
-        public void CheckConsoleInput()
+        public void By_default_there_is_no_default_value()
         {
-            string param1 = "2";
-            string param2 = "+";
-            string param3 = "2";
-            //Return int,but why...there is only invoke and returns Command.
-            _ = DoubleArgumentExpression.GetTwoArgumentsCommand().Invoke(new string[ ] { param1, param2, param3 });
-            // TODO...
-            //How I should re-write here for pass my test. Or where I can read about it.
+            var command = new Command("--add");
 
         }
     }
