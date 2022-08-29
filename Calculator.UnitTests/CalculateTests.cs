@@ -1,5 +1,8 @@
 ﻿using System.CommandLine;
 using CalculatorOperations;
+using System.CommandLine.NamingConventionBinder;
+using System.CommandLine.Parsing;
+using Calculator.Console.UI;
 
 namespace Calculator.UnitTests
 {
@@ -16,11 +19,44 @@ namespace Calculator.UnitTests
             Provider.DoubleExpression.GetMathExpression(num1, num2, type));
             Assert.Equal(expectedErrorMessage, ex.Message);
         }
-        [Fact]
-        public void By_default_there_is_no_default_value()
-        {
-            var command = new Command("--add");
 
+        [Theory]
+        [InlineData("2 2")]
+        [InlineData("1 3")]
+        public void CheckValidArguments(string values)
+        {
+            var rootCommand = new RootCommand();
+            var command = new Command("--add")
+            {
+               new Argument<decimal>("first", "First argument "),
+               new Argument<decimal>("second", "Second argument")
+            };
+            var result = new Parser(command).Parse(values);
+            command.Handler = CommandHandler.Create(DoubleArgumentExpression.GetTwoArgumentsCommand);
+            int resultOperation = result.Invoke();
+            Assert.Equal(4, resultOperation);
+        }
+
+        [Theory]
+        [InlineData("d 2")]
+        [InlineData("1 p")]
+        [InlineData("  p")]
+        public void CheckInValidArguments(string values)
+        {
+            var command = new Command("--add")
+            {
+               new Argument<decimal>("first", "First argument "),
+               new Argument<decimal>("second", "Second argument")
+            };
+            var result = new Parser(command).Parse(values);
+            string? errorsMessage = result.Errors.ToString();
+            bool isErrorExist = false;
+            if (errorsMessage != null)
+            {
+                isErrorExist = true;
+            }
+            bool isExpectError = true;
+            Assert.Equal(isExpectError, isErrorExist);
         }
     }
 }

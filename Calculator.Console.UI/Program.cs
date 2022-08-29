@@ -14,7 +14,7 @@ class Program
         //var firstArgument = new Argument<decimal>("first", "First argument ");
         //var operation = new Argument<string>("operation", "Operation of expression");
         //var secondArgument = new Argument<decimal>("second", "Second argument");
-         var rootCommand = new RootCommand();
+        var rootCommand = new RootCommand();
         //rootCommand.Handler = CommandHandler.Create<decimal, string, decimal>(DoubleArgumentExpression.GetTwoArgumentsCommand);
         //rootCommand.Add(firstArgument);
         //rootCommand.Add(operation);
