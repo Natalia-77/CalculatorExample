@@ -1,5 +1,4 @@
-﻿
-using CalculatorOperations.MathOperationsTypes;
+﻿using CalculatorOperations.MathOperationsTypes;
 
 namespace CalculatorOperations.CompleteMathExpressions.Interfaces
 {

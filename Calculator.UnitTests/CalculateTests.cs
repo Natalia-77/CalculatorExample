@@ -32,7 +32,7 @@ namespace Calculator.UnitTests
                new Argument<decimal>("second", "Second argument")
             };
             var result = new Parser(command).Parse(values);
-            command.Handler = CommandHandler.Create(DoubleArgumentExpression.GetTwoArgumentsCommand);
+            command.Handler = CommandHandler.Create(DoubleArgumentExpression.GetTwoAddArgumentsCommand);
             int resultOperation = result.Invoke();
             Assert.Equal(4, resultOperation);
         }

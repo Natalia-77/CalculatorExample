@@ -2,6 +2,7 @@
 using System.CommandLine;
 using System.Resources;
 using System.CommandLine.NamingConventionBinder;
+using System.CommandLine.Parsing;
 
 [assembly: CLSCompliant(true)]
 [assembly: NeutralResourcesLanguage("en")]
@@ -11,35 +12,41 @@ class Program
 {
     static int Main(string[ ] args)
     {
-        //var firstArgument = new Argument<decimal>("first", "First argument ");
-        //var operation = new Argument<string>("operation", "Operation of expression");
-        //var secondArgument = new Argument<decimal>("second", "Second argument");
         var rootCommand = new RootCommand();
-        //rootCommand.Handler = CommandHandler.Create<decimal, string, decimal>(DoubleArgumentExpression.GetTwoArgumentsCommand);
-        //rootCommand.Add(firstArgument);
-        //rootCommand.Add(operation);
-        //rootCommand.Add(secondArgument);
-        //return rootCommand.Invoke(args);
-
-        var command = new Command("--add")
+        var commandAdd = new Command("--add")
         {
                new Argument<decimal>("first", "First argument "),
                new Argument<decimal>("second", "Second argument")
         };
-        rootCommand.Add(command);
-        //var subtractCommand = new Command("--sub");
-        //var addCommand = new Command("--add");
-        //rootCommand.Add(addCommand);
-        //rootCommand.Add(subtractCommand);
+        var commandSubs = new Command("--subs")
+        {
+               new Argument<decimal>("first", "First argument "),
+               new Argument<decimal>("second", "Second argument")
+        };
+        var commandModule = new Command("--mod")
+        {
+            new Argument<decimal>("single", "Single argument ")
+        };
+        rootCommand.Add(commandAdd);
+        rootCommand.Add(commandSubs);
+        rootCommand.Add(commandModule);
+        var result = new Parser(rootCommand).Parse(args);
+        var command = result.CommandResult.Command;
 
-        //var firstArgument = new Argument<decimal>("first", "First argument ");
-        //var secondArgument = new Argument<decimal>("second", "Second argument");
-        //rootCommand.Add(firstArgument);
-        //rootCommand.Add(secondArgument);
-
-        //addCommand.AddArgument(firstArgument);
-        // addCommand.AddArgument(secondArgument);
-        command.Handler = CommandHandler.Create<decimal, decimal>(DoubleArgumentExpression.GetTwoArgumentsCommand);
+        switch (command.Name)
+        {
+            case "--add":
+                commandAdd.Handler = CommandHandler.Create<decimal, decimal>(DoubleArgumentExpression.GetTwoAddArgumentsCommand);
+                break;
+            case "--subs":
+                commandSubs.Handler = CommandHandler.Create<decimal, decimal>(DoubleArgumentExpression.GetTwoSubsArgumentsCommand);
+                break;
+            case "--mod":
+                commandModule.Handler = CommandHandler.Create<decimal>(SingleArgumentExpression.GetSingleModuleArgumentsCommand);
+                break;
+            default:
+                break;
+        }
         return rootCommand.Invoke(args);
 
     }

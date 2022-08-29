@@ -8,7 +8,6 @@ namespace CalculatorOperations.CompleteMathExpressions
     public class DoubleValueExpression : IDoubleValueExpression
     {
         private IDoubleValueOperands? _doubleValue;
-
         public decimal GetMathExpression(decimal firstValue, decimal secondValue, OperationTypes operationsTypes)
         {
             decimal value;

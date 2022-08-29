@@ -1,9 +1,7 @@
-﻿
-namespace CalculatorOperations.Interfaces
+﻿namespace CalculatorOperations.Interfaces
 {
     internal interface ISingleValueOperand
     {
-         decimal Execute(decimal singleValue);
-        
+        decimal Execute(decimal singleValue);
     }
 }

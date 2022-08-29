@@ -8,7 +8,6 @@ namespace CalculatorOperations.CompleteMathExpressions
     public class SingleValueExpression : ISingleValueExpression
     {
         private ISingleValueOperand? _singleValue;
-
         public decimal GetMathExpression(decimal singleValue, OperationTypes operationsTypes)
         {
             decimal value;
