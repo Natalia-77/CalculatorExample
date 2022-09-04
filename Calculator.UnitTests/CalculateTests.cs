@@ -8,15 +8,13 @@ namespace Calculator.UnitTests
 {
     public class CalculateTests
     {
-        [Fact]
-        public void CheckDivedeByZero()
+        [Theory]
+        [InlineData(1, 0)]
+        public void CheckDivedeByZero(decimal first, decimal two)
         {
-            CalculatorOperations.MathOperationsTypes.OperationTypes type = (CalculatorOperations.MathOperationsTypes.OperationTypes)3;
-            decimal num1 = 1;
-            decimal num2 = 0;
-            string expectedErrorMessage = "Divided by zero";
-            ArithmeticException ex = Assert.Throws<ArithmeticException>(() =>
-            Provider.DoubleExpression.GetMathExpression(num1, num2, type));
+            string expectedErrorMessage = "Attempted to divide by zero.";
+            DivideByZeroException ex = Assert.Throws<DivideByZeroException>(() =>
+            Factory.GetDivideOperationFactory(first, two).GetOperation().GetResultDivideTwoArguments);
             Assert.Equal(expectedErrorMessage, ex.Message);
         }
 
@@ -35,6 +33,63 @@ namespace Calculator.UnitTests
             command.Handler = CommandHandler.Create(DoubleArgumentExpression.GetTwoAddArgumentsCommand);
             int resultOperation = result.Invoke();
             Assert.Equal(4, resultOperation);
+        }
+
+        [Theory]
+        [InlineData("10 2", 8)]
+        public void CheckValidSubtractArguments(string values, int resulrArgument)
+        {
+            var rootCommand = new RootCommand();
+            var command = new Command("--subs")
+            {
+               new Argument<decimal>("first", "First argument "),
+               new Argument<decimal>("second", "Second argument")
+            };
+            var result = new Parser(command).Parse(values);
+            command.Handler = CommandHandler.Create(DoubleArgumentExpression.GetTwoSubstractArgumentsCommand);
+            int resultOperation = result.Invoke();
+            bool isEqualResult = resultOperation.Equals(resulrArgument);
+            Assert.True(isEqualResult);
+        }
+
+        [Theory]
+        [InlineData("8 2", 4)]
+        public void CheckValidDivideArguments(string values, int resulrArgument)
+        {
+            var rootCommand = new RootCommand();
+            var command = new Command("--div")
+            {
+               new Argument<decimal>("first", "First argument "),
+               new Argument<decimal>("second", "Second argument")
+            };
+            var result = new Parser(command).Parse(values);
+            command.Handler = CommandHandler.Create(DoubleArgumentExpression.GetDivideTwoArgumentsCommand);
+            int resultOperation = result.Invoke();
+            bool isEqualResult = resultOperation.Equals(resulrArgument);
+            Assert.True(isEqualResult);
+        }
+
+        [Theory]
+        [InlineData("2 p")]
+        [InlineData("  s")]
+        [InlineData("2 0")]
+        [InlineData("   ")]
+        public void CheckInValidDivideArguments(string values)
+        {
+            var command = new Command("--div")
+            {
+               new Argument<decimal>("first", "First argument "),
+               new Argument<decimal>("second", "Second argument")
+            };
+            var result = new Parser(command).Parse(values);
+            string? errorMessage = result.Errors.ToString();
+            bool isErrorExist = false;
+            if (errorMessage != null)
+            {
+                isErrorExist = true;
+            }
+            bool isExpectError = true;
+            Assert.Equal(isExpectError, isErrorExist);
         }
 
         [Theory]

@@ -23,12 +23,19 @@ class Program
                new Argument<decimal>("first", "First argument "),
                new Argument<decimal>("second", "Second argument")
         };
+        var commandDivide = new Command("--div")
+        {
+               new Argument<decimal>("first", "First argument "),
+               new Argument<decimal>("second", "Second argument")
+        };
         var commandModule = new Command("--mod")
         {
-            new Argument<decimal>("single", "Single argument ")
+            new Argument<decimal>("firstSingle", "Single argument")
+
         };
         rootCommand.Add(commandAdd);
         rootCommand.Add(commandSubs);
+        rootCommand.Add(commandDivide);
         rootCommand.Add(commandModule);
         var result = new Parser(rootCommand).Parse(args);
         var command = result.CommandResult.Command;
@@ -39,7 +46,10 @@ class Program
                 commandAdd.Handler = CommandHandler.Create<decimal, decimal>(DoubleArgumentExpression.GetTwoAddArgumentsCommand);
                 break;
             case "--subs":
-                commandSubs.Handler = CommandHandler.Create<decimal, decimal>(DoubleArgumentExpression.GetTwoSubsArgumentsCommand);
+                commandSubs.Handler = CommandHandler.Create<decimal, decimal>(DoubleArgumentExpression.GetTwoSubstractArgumentsCommand);
+                break;
+            case "--div":
+                commandModule.Handler = CommandHandler.Create<decimal, decimal>(DoubleArgumentExpression.GetDivideTwoArgumentsCommand);
                 break;
             case "--mod":
                 commandModule.Handler = CommandHandler.Create<decimal>(SingleArgumentExpression.GetSingleModuleArgumentsCommand);

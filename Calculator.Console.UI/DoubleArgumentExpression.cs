@@ -6,19 +6,27 @@ namespace Calculator.Console.UI
     {
         public static int GetTwoAddArgumentsCommand(decimal first, decimal second)
         {
-            var type = CalculatorOperations.MathOperationsTypes.OperationTypes.Sum;
-            int res = (int)Provider.DoubleExpression.GetMathExpression(first, second, type);
-            System.Console.WriteLine($"Result operation: {res}");
-            return res;
+            var getSumFactory = Factory.GetSumTwoOperandFactory(first, second);
+            var operation = getSumFactory.GetOperation();
+            var resultOperation = operation.GetResultSumTwoArguments;
+            System.Console.WriteLine($"Result operation: {resultOperation} with type: {operation.Type}");
+            return (int)resultOperation;
         }
-
-        public static int GetTwoSubsArgumentsCommand(decimal first, decimal second)
+        public static int GetTwoSubstractArgumentsCommand(decimal first, decimal second)
         {
-            var type = CalculatorOperations.MathOperationsTypes.OperationTypes.Substrat;
-            int res = (int)Provider.DoubleExpression.GetMathExpression(first, second, type);
-            System.Console.WriteLine($"Result operation: {res}");
-            return res;
+            var getSubtractFactory = Factory.GetSubtractTwoOperandFactory(first, second);
+            var operation = getSubtractFactory.GetOperation();
+            var resultOperation = operation.GetResultSubtractTwoArguments;
+            System.Console.WriteLine($"Result operation: {resultOperation} with type: {operation.Type}");
+            return (int)resultOperation;
         }
-
+        public static int GetDivideTwoArgumentsCommand(decimal first, decimal second)
+        {
+            var getDivideFactory = Factory.GetDivideOperationFactory(first, second);
+            var operation = getDivideFactory.GetOperation();
+            var resultOperation = operation.GetResultDivideTwoArguments;
+            System.Console.WriteLine($"Result operation: {resultOperation} with type: {operation.Type} ");
+            return (int)resultOperation;
+        }
     }
 }

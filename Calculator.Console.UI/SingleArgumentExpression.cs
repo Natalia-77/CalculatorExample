@@ -6,10 +6,11 @@ namespace Calculator.Console.UI
     {
         public static int GetSingleModuleArgumentsCommand(decimal single)
         {
-            var type = CalculatorOperations.MathOperationsTypes.OperationTypes.Module;
-            int res = (int)Provider.SingleExpression.GetMathExpression(single, type);
-            System.Console.WriteLine($"Result operation: {res}");
-            return res;
+            var getModuleFactory = Factory.GetModuleOperationFactory(single);
+            var operation = getModuleFactory.GetOperation();
+            var resultOperation = operation.GetResultModuleOneArgument;
+            System.Console.WriteLine($"Result operation: {resultOperation} with type: {operation.Type}");
+            return (int)resultOperation;
         }
     }
 }
