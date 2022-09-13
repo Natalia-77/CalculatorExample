@@ -2,9 +2,8 @@
 
 namespace CalculatorOperations.Interfaces
 {
-    public interface ITwoOperandsOperation : IOperation
+    public interface IOneOperandOperation : IOperation
     {
-        float GetResult(float first, float second);
-
+        float GetResult(float singleOperand);
     }
 }

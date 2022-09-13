@@ -1,7 +1,8 @@
 ﻿namespace CalculatorOperations.Operations.Interfaces
 {
-    internal interface IMultiOperandsOperation
+    public interface IMultiOperandsOperation : IOperation
     {
-        decimal GetResultSumMultiArguments();
+        float GetResult(float[ ] numbers);
+        void ShowExpression(Queue<float> items);
     }
 }

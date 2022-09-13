@@ -1,10 +1,20 @@
-﻿namespace CalculatorOperations.Operations
+﻿using CalculatorOperations.Interfaces;
+
+namespace CalculatorOperations.Operations
 {
-    internal class SquareRootOperation : BaseOperation
+    internal class SquareRootOperation : BaseOperation, IOneOperandOperation
     {
-        public SquareRootOperation(decimal first) : base(OperationType.Square)
+        public SquareRootOperation() : base(OperationType.Square)
         {
-            FirstOperand = first;
+        }
+
+        public float GetResult(float singleOperand)
+        {
+            if (singleOperand == 0)
+            {
+                throw new ArgumentNullException(nameof(singleOperand), "Should be not null");
+            }
+            return (float)Math.Sqrt((double)singleOperand);
         }
     }
 }

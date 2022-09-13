@@ -2,11 +2,11 @@
 
 namespace CalculatorOperations.Factories
 {
-    public class SquareRootOperationFactory : OperationsFactory
+    public class SumMultiOperationFactory : OperationsFactory
     {
         public override BaseOperation GetOperation()
         {
-            return new SquareRootOperation();
+            return new SumMultiOperation();
         }
     }
 }

@@ -1,11 +1,26 @@
-﻿namespace CalculatorOperations.Operations
+﻿using CalculatorOperations.Interfaces;
+
+namespace CalculatorOperations.Operations
 {
-    internal class DivideOperation : BaseOperation
+    internal class DivideOperation : BaseOperation, ITwoOperandsOperation
     {
-        public DivideOperation(decimal first, decimal second) : base(OperationType.Divide)
+        public DivideOperation() : base(OperationType.Divide)
         {
-            FirstOperand = first;
-            SecondOperand = second;
+        }
+
+        public float GetResult(float first, float second)
+        {
+            if (second == 0)
+            {
+                throw new DivideByZeroException("Attempted to divide by zero.");
+            }
+            ShowExpression(first, second);
+            return first / second;
+        }
+
+        public static void ShowExpression(float first, float second)
+        {
+            Console.Write($"{ResourceFile.Expression}{first}/{second} = ");
         }
     }
 }

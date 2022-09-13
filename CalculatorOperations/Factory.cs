@@ -1,28 +1,34 @@
-﻿using CalculatorOperations.Factories;
+﻿using CalculatorOperations.Interfaces;
+using CalculatorOperations.Operations;
+using CalculatorOperations.Operations.Interfaces;
 
 namespace CalculatorOperations
 {
     public static class Factory
     {
-        public static SumOperationFactory GetSumTwoOperandFactory(decimal first, decimal second)
+        public static ITwoOperandsOperation SumTwoFactory()
         {
-            return new SumOperationFactory(first, second);
+            return new SumOperation();
         }
-        public static SubtractOperationFactory GetSubtractTwoOperandFactory(decimal first, decimal second)
+        public static ITwoOperandsOperation SubtractFactory()
         {
-            return new SubtractOperationFactory(first, second);
+            return new SubtractOperation();
         }
-        public static SquareRootOperationFactory GetSquareRootOperationFactory(decimal operand)
+        public static IOneOperandOperation SquareRootFactory()
         {
-            return new SquareRootOperationFactory(operand);
+            return new SquareRootOperation();
         }
-        public static DivideOperationFactory GetDivideOperationFactory(decimal first, decimal second)
+        public static ITwoOperandsOperation DivideFactory()
         {
-            return new DivideOperationFactory(first, second);
+            return new DivideOperation();
         }
-        public static ModuleOperationFactory GetModuleOperationFactory(decimal operand)
+        public static IMultiOperandsOperation MultiOperandsFactory()
         {
-            return new ModuleOperationFactory(operand);
+            return new SumMultiOperation();
+        }
+        public static IOneOperandOperation ModuleFactory()
+        {
+            return new ModuleOperation();
         }
     }
 }

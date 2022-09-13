@@ -1,11 +1,16 @@
-﻿namespace CalculatorOperations.Operations
+﻿using CalculatorOperations.Interfaces;
+
+namespace CalculatorOperations.Operations
 {
-    internal class SubtractOperation : BaseOperation
+    internal class SubtractOperation : BaseOperation, ITwoOperandsOperation
     {
-        public SubtractOperation(decimal first, decimal second) : base(OperationType.Substract)
+        public SubtractOperation() : base(OperationType.Substract)
         {
-            FirstOperand = first;
-            SecondOperand = second;
+        }
+
+        public float GetResult(float first, float second)
+        {
+            return first - second;
         }
     }
 }

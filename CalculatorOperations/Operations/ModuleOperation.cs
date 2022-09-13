@@ -1,10 +1,16 @@
-﻿namespace CalculatorOperations.Operations
+﻿using CalculatorOperations.Interfaces;
+
+namespace CalculatorOperations.Operations
 {
-    internal class ModuleOperation : BaseOperation
+    internal class ModuleOperation : BaseOperation, IOneOperandOperation
     {
-        public ModuleOperation(decimal first) : base(OperationType.Module)
+        public ModuleOperation() : base(OperationType.Module)
         {
-            FirstOperand = first;
+        }
+
+        public float GetResult(float singleOperand)
+        {
+            return Math.Abs(singleOperand);
         }
     }
 }
