@@ -11,16 +11,9 @@ class Program
 {
     static int Main(string[ ] args)
     {
-        var rootCommand = new RootCommand();
-        var commandAdd = new Command("add")
+        var argumentsSum = new Argument<float[ ]>("sumoperands")
         {
-               new Argument<decimal>("first", "First argument "),
-               new Argument<decimal>("second", "Second argument")
-        };
-        var commandSubs = new Command("subs")
-        {
-               new Argument<decimal>("first", "First argument "),
-               new Argument<decimal>("second", "Second argument")
+            Arity = new ArgumentArity(2, 2)
         };
         var arguments = new Argument<float[ ]>("operands")
         {
@@ -45,14 +38,21 @@ class Program
             argumentModule
 
         };
+        var commandSum = new Command("add")
+        {
+            argumentsSum
+        };
+        commandSum.SetHandler(sumoperands => DoubleArgumentExpression.GetSumTwo(sumoperands), argumentsSum);
         commandMultiSum.SetHandler(operands => DoubleArgumentExpression.GetSumMulti(operands), arguments);
         commandDivide.SetHandler(divideOperands => DoubleArgumentExpression.GetDivideTwoArgumentsCommand(divideOperands), argumentsDivide);
         commandModule.SetHandler(firstSingle => SingleArgumentExpression.GetSingleModuleArgumentsCommand(firstSingle), argumentModule);
-        rootCommand.Add(commandAdd);
-        rootCommand.Add(commandSubs);
-        rootCommand.Add(commandMultiSum);
-        rootCommand.Add(commandDivide);
-        rootCommand.Add(commandModule);
+        var rootCommand = new RootCommand
+        {
+           commandSum,
+           commandMultiSum,
+           commandDivide,
+           commandModule
+        };
         return rootCommand.Invoke(args);
 
     }

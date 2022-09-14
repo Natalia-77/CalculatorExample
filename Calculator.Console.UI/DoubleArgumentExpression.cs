@@ -4,23 +4,19 @@ namespace Calculator.Console.UI
 {
     public static class DoubleArgumentExpression
     {
-        //public static int GetTwoAddArgumentsCommand(decimal first, decimal second)
-        //{
-        //    var getSumFactory = Factory.GetSumTwoOperandFactory(first, second);
-        //    var operation = getSumFactory.GetOperation();
-        //    var resultOperation = operation.GetResultSumTwoArguments;
-        //    System.Console.WriteLine($"Result operation: {resultOperation} with type: {operation.Type}");
-        //    return (int)resultOperation;
-        //}
-        //public static int GetTwoSubstractArgumentsCommand(decimal first, decimal second)
-        //{
-        //    var getSubtractFactory = Factory.GetSubtractTwoOperandFactory(first, second);
-        //    var operation = getSubtractFactory.GetOperation();
-        //    var resultOperation = operation.GetResultSubtractTwoArguments;
-        //    System.Console.WriteLine($"Result operation: {resultOperation} with type: {operation.Type}");
-        //    return (int)resultOperation;
-        //}
-
+        public static int GetSumTwo(float[ ] sumoperands)
+        {
+            var getSumFactory = Factory.SumTwoFactory();
+            if (sumoperands == null)
+            {
+                throw new ArgumentOutOfRangeException(nameof(sumoperands), "Should be not null.");
+            }
+            var firstOperand = sumoperands[ 0 ];
+            var secondOperand = sumoperands[ 1 ];
+            var operationResult = getSumFactory.GetResult(firstOperand, secondOperand);
+            System.Console.Write($"{operationResult} with type: {getSumFactory.Type}");
+            return 0;
+        }
 
         public static float GetSumMulti(float[ ] operands)
         {

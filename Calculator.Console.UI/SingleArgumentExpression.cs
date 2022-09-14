@@ -8,7 +8,6 @@ namespace Calculator.Console.UI
         {
             var getModuleFactory = Factory.ModuleFactory();
             var resultOperation = getModuleFactory.GetResult(single);
-            //var resultOperation = operation.GetResultModuleOneArgument;
             System.Console.WriteLine($"{resultOperation} with type: {getModuleFactory.Type}");
             return 0;
         }
