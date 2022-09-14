@@ -4,13 +4,13 @@ namespace Calculator.Console.UI
 {
     internal class SingleArgumentExpression
     {
-        //public static int GetSingleModuleArgumentsCommand(decimal single)
-        //{
-        //    var getModuleFactory = Factory.GetModuleOperationFactory(single);
-        //    var operation = getModuleFactory.GetOperation();
-        //    var resultOperation = operation.GetResultModuleOneArgument;
-        //    System.Console.WriteLine($"Result operation: {resultOperation} with type: {operation.Type}");
-        //    return (int)resultOperation;
-        //}
+        public static int GetSingleModuleArgumentsCommand(float single)
+        {
+            var getModuleFactory = Factory.ModuleFactory();
+            var resultOperation = getModuleFactory.GetResult(single);
+            //var resultOperation = operation.GetResultModuleOneArgument;
+            System.Console.WriteLine($"{resultOperation} with type: {getModuleFactory.Type}");
+            return 0;
+        }
     }
 }

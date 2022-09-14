@@ -8,7 +8,6 @@ namespace CalculatorOperations.Operations
         {
 
         }
-
         public float GetResult(float[ ] numbers)
         {
             int capacityQueue = numbers.Length;
