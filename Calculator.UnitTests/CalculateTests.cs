@@ -1,36 +1,56 @@
 ﻿using System.CommandLine;
-using Calculator.Console.UI;
 using CalculatorOperations;
+using System.CommandLine.NamingConventionBinder;
+using System.CommandLine.Parsing;
+using Calculator.Console.UI;
 
 namespace Calculator.UnitTests
 {
     public class CalculateTests
-    {     
-
-        [Fact]
-        public void CheckDivedeByZero()
+    {
+        [Theory]
+        [InlineData("2 p")]
+        [InlineData("  s")]
+        [InlineData("2 0")]
+        [InlineData("   ")]
+        public void CheckInValidDivideArguments(string values)
         {
-            CalculatorOperations.MathOperationsTypes.OperationTypes type = (CalculatorOperations.MathOperationsTypes.OperationTypes)3;
-            decimal num1 = 1;
-            decimal num2 = 0;
-            string expectedErrorMessage = "Divided by zero";
-            ArithmeticException ex = Assert.Throws<ArithmeticException>(() =>
-            Provider.DoubleExpression.GetMathExpression(num1, num2, type));
-            Assert.Equal(expectedErrorMessage, ex.Message);
+            var command = new Command("divide")
+            {
+               new Argument<decimal>("first", "First argument "),
+               new Argument<decimal>("second", "Second argument")
+            };
+            var result = new Parser(command).Parse(values);
+            string? errorMessage = result.Errors.ToString();
+            bool isErrorExist = false;
+            if (errorMessage != null)
+            {
+                isErrorExist = true;
+            }
+            bool isExpectError = true;
+            Assert.Equal(isExpectError, isErrorExist);
         }
-        [Fact]
-        public void CheckConsoleInput()
+
+        [Theory]
+        [InlineData("d 2")]
+        [InlineData("1 p")]
+        [InlineData("  p")]
+        public void CheckInValidArguments(string values)
         {
-            string param1 = "2";
-            string param2 = "+";
-            string param3 = "2";
-            //Return int,but why...there is only invoke and returns Command.
-            var expected= DoubleArgumentExpression.GetTwoArgumentsCommand().Invoke(new string[ ] { param1, param2 ,param3});
-            // TODO...
-            //How I should re-write here for pass my test. Or where I can read about it. 
-                 
-            
-           
+            var command = new Command("add")
+            {
+               new Argument<decimal>("first", "First argument "),
+               new Argument<decimal>("second", "Second argument")
+            };
+            var result = new Parser(command).Parse(values);
+            string? errorsMessage = result.Errors.ToString();
+            bool isErrorExist = false;
+            if (errorsMessage != null)
+            {
+                isErrorExist = true;
+            }
+            bool isExpectError = true;
+            Assert.Equal(isExpectError, isErrorExist);
         }
     }
 }

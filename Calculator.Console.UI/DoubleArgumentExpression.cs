@@ -1,48 +1,47 @@
-﻿using System.CommandLine;
-using CalculatorOperations;
+﻿using CalculatorOperations;
 
 namespace Calculator.Console.UI
 {
     public static class DoubleArgumentExpression
     {
-        public static Command GetTwoArgumentsCommand()
+        public static int GetSumTwo(float[ ] sumoperands)
         {
-            var firstArgument = new Argument<decimal>("first", "First argument ");
-            var operation = new Argument<string>("operation", "Operation of expression");
-            var secondArgument = new Argument<decimal>("second", "Second argument");           
-
-            RootCommand rootCommand = new RootCommand();
-            rootCommand.Add(firstArgument);          
-            rootCommand.Add(operation);
-            rootCommand.Add(secondArgument);
-
-            rootCommand.SetHandler((firstArgumentValue, operationValue, secondArgumentValue) =>
+            var getSumFactory = Factory.SumTwoFactory();
+            if (sumoperands == null)
             {
-
-                CalculatorOperations.MathOperationsTypes.OperationTypes type = 0;
-
-                switch (operationValue)
-                {
-                    case "+":
-                        type = CalculatorOperations.MathOperationsTypes.OperationTypes.Sum;
-                        break;
-                    case "-":
-                        type = CalculatorOperations.MathOperationsTypes.OperationTypes.Substrat;
-                        break;
-                    case "/":
-                        type = CalculatorOperations.MathOperationsTypes.OperationTypes.Multiple;
-                        break;                    
-                    default:
-                        type = 0;
-                        break;
-                }
-                decimal res = Provider.DoubleExpression.GetMathExpression(firstArgumentValue, secondArgumentValue, type);
-                System.Console.WriteLine($"Result: {res}");
-
-            }, firstArgument, operation, secondArgument);
-           
-            return rootCommand;
+                throw new ArgumentOutOfRangeException(nameof(sumoperands), "Should be not null.");
+            }
+            var firstOperand = sumoperands[ 0 ];
+            var secondOperand = sumoperands[ 1 ];
+            var operationResult = getSumFactory.GetResult(firstOperand, secondOperand);
+            System.Console.Write($"{operationResult} with type: {getSumFactory.Type}");
+            return 0;
         }
-       
+
+        public static float GetSumMulti(float[ ] operands)
+        {
+            if (operands == null || operands.Length < 2)
+            {
+                throw new ArgumentOutOfRangeException(nameof(operands), "Should contsist from 2 to 3 arguments");
+            }
+            var getMultiSumFactory = Factory.MultiOperandsFactory();
+            var resultOperation = getMultiSumFactory.GetResult(operands);
+            System.Console.Write($"{resultOperation} with type: {getMultiSumFactory.Type} ");
+            return 0;//0-succ,1.2.3-error.
+        }
+
+        public static int GetDivideTwoArgumentsCommand(float[ ] divideOperands)
+        {
+            var getDivideFactory = Factory.DivideFactory();
+            if (divideOperands == null)
+            {
+                throw new ArgumentOutOfRangeException(nameof(divideOperands), "Should be not null.");
+            }
+            var firstOperand = divideOperands[ 0 ];
+            var secondOperand = divideOperands[ 1 ];
+            var resultOperation = getDivideFactory.GetResult(firstOperand, secondOperand);
+            System.Console.Write($"{resultOperation} with type: {getDivideFactory.Type} ");
+            return 0;
+        }
     }
 }
