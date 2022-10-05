@@ -1,33 +1,33 @@
 ﻿namespace Calculator.Generic
 {
-    public class GenericSubstract<T> : Operation<T>
+    public class GenericSubstract : IOperation
     {
-        private readonly Operation<T>? _operation;
+        //public override T GetResultOperations<T>(IOperand<T>left, IOperand<T>right)
+        // {
+        //  Type type = left.GetType();
+        //  Console.WriteLine($"Type {type}");
+        //  //int capacity = operands.Length;
+        //Console.WriteLine($"Capacity{capacity}");
 
-        public  T GetResultOperations(T[ ] operands)
+        //IOperand<T>? res = default;
+
+
+        // for (int i = 0; i < operands.Length; i++)
+        //{
+        // res = GetResultSubOperation(operands[ 0 ], operands[ 1 ]);
+        // res = left.Subs(left,right);
+
+        //Console.WriteLine($"Score{operands[ i ]}");
+        // }
+        //return res;
+        // }
+
+        public IOperand<T> GetResultSubOperation<T>(IOperand<T> first, IOperand<T> second)
         {
-            Type type = operands.GetType();
-            Console.WriteLine($"Type {type}");
-            int capacityQueue = operands.Length;
-            Console.WriteLine($"Capacity{capacityQueue}");
-
-            T? res = default(T);
-            for (int i = 0; i < operands.Length; i++)
-            {
-                res = _operation.GetResultSubOperation(operands[ 0 ], operands[ 1 ]);
-                Console.WriteLine($"Score{operands[ i ]}");
-            }
-            return res ?? default(T);
+            IOperand<T>? res = default;
+            res = first.Subs(second);
+            return res;
         }
 
-        public override T GetResultSubOperation(T first, T second)
-        {
-            Type type = first.GetType();
-            Console.WriteLine($"Type {type}");
-            T? res = default(T);
-            Console.WriteLine(first);
-            res = _operation.GetResultSubOperation(first, second);
-            return res ?? default(T);
-        }
     }
 }

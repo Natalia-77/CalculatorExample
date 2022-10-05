@@ -45,17 +45,19 @@ namespace Calculator.Console.UI
             return 0;
         }
 
-        public static int GetSum(int[ ] sumoperands)
+        public static int GetSubs(string[ ] str)
         {
-            var getSumFactory = FactoryGenerics.GetSumGenericFactory<int>();
+            var getSumFactory = FactoryGenerics.GetSubsGenericFactory();
             if (sumoperands == null)
             {
                 throw new ArgumentOutOfRangeException(nameof(sumoperands), "Should be not null.");
             }
             var firstOperand = sumoperands[ 0 ];
             var secondOperand = sumoperands[ 1 ];
-            var operationResult = getSumFactory.GetResultOperation(sumoperands);
-            System.Console.Write($"{operationResult} with type: {getSumFactory.GetType()}");
+            var result1 = new IntOperand(firstOperand);
+            var result2 = new IntOperand(secondOperand);
+            var operationResult = getSumFactory.GetResultSubOperation(result1, result2);
+            System.Console.Write($"{operationResult.Value} with type: {getSumFactory.GetType()}");
             return 0;
         }
     }

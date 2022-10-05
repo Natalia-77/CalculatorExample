@@ -11,7 +11,7 @@ class Program
 {
     static int Main(string[ ] args)
     {
-        var argumentsSum = new Argument<int[ ]>("sumoperands")
+        var argumentsSum = new Argument<string[ ]>("sumoperands")
         {
             Arity = new ArgumentArity(2, 3)
         };
@@ -42,7 +42,7 @@ class Program
         {
             argumentsSum
         };
-        commandSum.SetHandler(sumoperands => DoubleArgumentExpression.GetSum(sumoperands), argumentsSum);
+        commandSum.SetHandler(sumoperands => DoubleArgumentExpression.GetSubs(sumoperands), argumentsSum);
         commandMultiSum.SetHandler(operands => DoubleArgumentExpression.GetSumMulti(operands), arguments);
         commandDivide.SetHandler(divideOperands => DoubleArgumentExpression.GetDivideTwoArgumentsCommand(divideOperands), argumentsDivide);
         commandModule.SetHandler(firstSingle => SingleArgumentExpression.GetSingleModuleArgumentsCommand(firstSingle), argumentModule);

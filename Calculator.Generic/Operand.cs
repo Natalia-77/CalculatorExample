@@ -7,6 +7,9 @@
         {
             Value = operandType;
         }
-        public abstract T GetResultOperation(T[ ] operands);
+        // public abstract T GetResultOperation(T[ ] operands);
+        public abstract IOperand<T> Sum(IOperand<T> other);
+        public abstract IOperand<T> Divide(IOperand<T> other);
+        public abstract IOperand<T> Subs(IOperand<T> other);
     }
 }

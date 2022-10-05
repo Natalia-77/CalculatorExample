@@ -1,7 +1,7 @@
 ﻿namespace Calculator.Generic
 {
-    public interface IOperation<T>
+    public interface IOperation 
     {
-        T GetResultSubOperation(T first, T second);
+        IOperand<T> GetResultSubOperation<T>(IOperand<T> first, IOperand<T> second);
     }
 }

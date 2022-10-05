@@ -1,4 +1,6 @@
-﻿namespace CalculatorOperations.UnitTests
+﻿using Calculator.Generic;
+
+namespace CalculatorOperations.UnitTests
 {
     public class DivideTests
     {
@@ -20,5 +22,15 @@
             var actual = operation.GetResult(numbers);
             Assert.Equal(result, actual);
         }
+
+        [Theory]
+        [InlineData(new IntOperand[ ] { 6, 2 })]
+        public void CheckValidResultSub(IOperand<int> first, float second, float result)
+        {
+            var operation = Factory.DivideFactory();
+            var actual = operation.GetResult(first, second);
+            Assert.Equal(result, actual);
+        }
+
     }
 }
