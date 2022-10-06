@@ -1,41 +1,86 @@
-﻿namespace Calculator.Generic
+﻿using System.Collections.ObjectModel;
+
+namespace Calculator.Generic
 {
     public class RomanNumeric : IOperand<RomanNumeric>
     {
-        //private string _numerics;
+        public static readonly IReadOnlyDictionary<string, int> _dictionaryValues = new ReadOnlyDictionary<string, int>(new Dictionary<string, int>
+        {
+            {"I",1 },
+            {"V",5 },
+            {"X",10 },
+            {"L",50 },
+            {"C",100 },
+            {"D",500 },
+            {"M",1000 }
+
+        });
+        private int _numerics;
         public RomanNumeric(int operandType)
         {
-            Numerics = operandType;
+            _numerics = operandType;
         }
 
         public RomanNumeric Value => this;
         public int Numerics
         {
-            get => Numerics;
-            init => Numerics = value < 0 ? throw new ArgumentException("Operand should be positive", nameof(value)) : value;
+            get => _numerics;
+            init => _numerics = value < 0 ? throw new ArgumentException("Operand should be positive", nameof(value)) : value;
 
         }
 
-
-
         public IOperand<RomanNumeric> Divide(IOperand<RomanNumeric> other)
         {
-            throw new NotImplementedException();
+            var resDivide = Value / other.Value;
+            return new RomanNumeric(resDivide.Numerics);
         }
 
         public IOperand<RomanNumeric> Subs(IOperand<RomanNumeric> other)
         {
-            return new RomanNumeric(Value - other.Value);
+            var resultSubstract = Value - other.Value;
+            return new RomanNumeric(resultSubstract.Numerics);
         }
 
         public IOperand<RomanNumeric> Sum(IOperand<RomanNumeric> other)
         {
-            throw new NotImplementedException();
+            var resultSumm = Value + other.Value;
+            return new RomanNumeric(resultSumm.Numerics);
         }
 
-        public static RomanNumeric operator -(int res, RomanNumeric numeric)
+        public static RomanNumeric operator -(RomanNumeric left, RomanNumeric right)
         {
-            return new RomanNumeric(res-numeric.Value);
+            var resultSubs = left.Numerics - right.Numerics;
+            return new RomanNumeric(resultSubs);
         }
+
+        public static RomanNumeric operator +(RomanNumeric left, RomanNumeric right)
+        {
+            var resultSum = left.Numerics + right.Numerics;
+            return new RomanNumeric(resultSum);
+        }
+
+        public static RomanNumeric operator /(RomanNumeric left, RomanNumeric right)
+        {
+            var resultDivide = left.Numerics / right.Numerics;
+            return new RomanNumeric(resultDivide);
+        }
+
+        public static RomanNumeric ParseStringToNumber(string inputStr)
+        {
+            if (string.IsNullOrEmpty(inputStr))
+            {
+                return new RomanNumeric(0);
+            }
+
+            string strToParse = inputStr.ToUpper();
+            int resultArabicNumber = 0;
+
+            for (int i = 0; i < strToParse.Length-1; i++)
+            {
+                var current = _dictionaryValues[ strToParse[ i ].ToString() ];
+            }
+            return new RomanNumeric(0);
+        }
+
     }
 }
