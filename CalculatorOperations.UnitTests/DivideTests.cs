@@ -24,12 +24,9 @@ namespace CalculatorOperations.UnitTests
         }
 
         [Theory]
-        [InlineData("VI",6)]
-        public void CheckValidResultSub(string roman,int arab)
+        [InlineData("IV", 4)]
+        public void CheckResultParseRomanToAradNumber(string roman, int arab)
         {
-            //var roma = new RomanNumeric(arab);
-            //var fav = FactoryGenerics.GetSubsGenericFactory();
-            
             var actual =RomanNumeric.ParseStringToNumber(roman);
             Assert.Equal(arab, actual.Numerics);
         }
