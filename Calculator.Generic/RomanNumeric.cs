@@ -67,19 +67,37 @@ namespace Calculator.Generic
 
         public static RomanNumeric ParseStringToNumber(string inputStr)
         {
+            string strToParse = inputStr.ToUpper();
             if (string.IsNullOrEmpty(inputStr))
             {
                 return new RomanNumeric(0);
             }
-
-            string strToParse = inputStr.ToUpper();
             int resultArabicNumber = 0;
-
-            for (int i = 0; i < strToParse.Length-1; i++)
+            int count = 0;
+            // while(!string.IsNullOrEmpty(strToParse))
+            int len = strToParse.Length;
+            for (int i = 0; i <=strToParse.Length-1; i++)
             {
                 var current = _dictionaryValues[ strToParse[ i ].ToString() ];
+                count++;
+                if (count < strToParse.Length)
+                {
+                    var next = _dictionaryValues[ strToParse[ i + 1 ].ToString() ];
+                    if (current < next)
+                    {
+                        resultArabicNumber -= current;
+                    }
+                    else
+                    {
+                        resultArabicNumber += current;
+                    }
+                }
+                else
+                {
+                    resultArabicNumber += current;
+                }
             }
-            return new RomanNumeric(0);
+            return new RomanNumeric(resultArabicNumber);
         }
 
     }

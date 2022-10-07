@@ -48,16 +48,16 @@ namespace Calculator.Console.UI
         public static int GetSubs(string[ ] str)
         {
             var getSumFactory = FactoryGenerics.GetSubsGenericFactory();
-            if (sumoperands == null)
+            if (str == null)
             {
-                throw new ArgumentOutOfRangeException(nameof(sumoperands), "Should be not null.");
+                throw new ArgumentOutOfRangeException(nameof(str), "Should be not null.");
             }
-            var firstOperand = sumoperands[ 0 ];
-            var secondOperand = sumoperands[ 1 ];
-            var result1 = new IntOperand(firstOperand);
-            var result2 = new IntOperand(secondOperand);
-            var operationResult = getSumFactory.GetResultSubOperation(result1, result2);
-            System.Console.Write($"{operationResult.Value} with type: {getSumFactory.GetType()}");
+            var firstOperand = str[ 0 ];
+            var secondOperand = str[ 1 ];
+            //var result1 = new IntOperand(firstOperand);
+            //var result2 = new IntOperand(secondOperand);
+            //var operationResult = getSumFactory.GetResultSubOperation(result1, result2);
+            //System.Console.Write($"{operationResult.Value} with type: {getSumFactory.GetType()}");
             return 0;
         }
     }

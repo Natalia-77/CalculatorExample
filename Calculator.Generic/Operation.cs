@@ -1,9 +1,9 @@
 ﻿namespace Calculator.Generic
 {
-    public abstract class Operation<T> : IOperation<T>
+    public abstract class Operation<T> 
     {
        
-        public abstract IOperand<T> GetResultSubOperation(IOperand<T> first,IOperand<T> second);
+        public abstract IOperand<T> GetResultSubOperation(IOperand<T> first, IOperand<T> second);
        
     }
 }

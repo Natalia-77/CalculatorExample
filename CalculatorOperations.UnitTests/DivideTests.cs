@@ -24,12 +24,14 @@ namespace CalculatorOperations.UnitTests
         }
 
         [Theory]
-        [InlineData(new IntOperand[ ] { 6, 2 })]
-        public void CheckValidResultSub(IOperand<int> first, float second, float result)
+        [InlineData("VI",6)]
+        public void CheckValidResultSub(string roman,int arab)
         {
-            var operation = Factory.DivideFactory();
-            var actual = operation.GetResult(first, second);
-            Assert.Equal(result, actual);
+            //var roma = new RomanNumeric(arab);
+            //var fav = FactoryGenerics.GetSubsGenericFactory();
+            
+            var actual =RomanNumeric.ParseStringToNumber(roman);
+            Assert.Equal(arab, actual.Numerics);
         }
 
     }
