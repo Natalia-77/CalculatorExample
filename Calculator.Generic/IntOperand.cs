@@ -9,8 +9,7 @@
 
         public override IOperand<int> Sum(IOperand<int> other)
         {
-
-            throw new NotImplementedException();
+            return new IntOperand(Value + other.Value);
         }
 
         public override IOperand<int> Divide(IOperand<int> other)

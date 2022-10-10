@@ -2,14 +2,9 @@
 {
     public static class FactoryGenerics
     {
-        //public static IOperand<T> GetSumGenericFactory<T>()
-        //{
-        //    return new GenericClass<T>();
-        //}
-
-        public static IOperation GetSubsGenericFactory()
+        public static IOperation GetSumGenericFactory()
         {
-            return new GenericSubstract();
+            return new GenericSumOperation();
         }
     }
 }

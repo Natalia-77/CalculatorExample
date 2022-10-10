@@ -74,13 +74,12 @@ namespace Calculator.Generic
             }
             int resultArabicNumber = 0;
             int count = 0;
-            // while(!string.IsNullOrEmpty(strToParse))
             int len = strToParse.Length;
-            for (int i = 0; i <=strToParse.Length-1; i++)
+            for (int i = 0; i <= len - 1; i++)
             {
                 var current = _dictionaryValues[ strToParse[ i ].ToString() ];
                 count++;
-                if (count < strToParse.Length)
+                if (count < len)
                 {
                     var next = _dictionaryValues[ strToParse[ i + 1 ].ToString() ];
                     if (current < next)

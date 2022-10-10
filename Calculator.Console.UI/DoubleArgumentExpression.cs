@@ -5,19 +5,19 @@ namespace Calculator.Console.UI
 {
     public static class DoubleArgumentExpression
     {
-        public static int GetSumTwo(float[ ] sumoperands)
-        {
-            var getSumFactory = CalculatorOperations.Factory.SumTwoFactory();
-            if (sumoperands == null)
-            {
-                throw new ArgumentOutOfRangeException(nameof(sumoperands), "Should be not null.");
-            }
-            var firstOperand = sumoperands[ 0 ];
-            var secondOperand = sumoperands[ 1 ];
-            var operationResult = getSumFactory.GetResult(firstOperand, secondOperand);
-            System.Console.Write($"{operationResult} with type: {getSumFactory.Type}");
-            return 0;
-        }
+        //public static int GetSumTwo(float[ ] sumoperands)
+        //{
+        //    var getSumFactory = CalculatorOperations.Factory.SumTwoFactory();
+        //    if (sumoperands == null)
+        //    {
+        //        throw new ArgumentOutOfRangeException(nameof(sumoperands), "Should be not null.");
+        //    }
+        //    var firstOperand = sumoperands[ 0 ];
+        //    var secondOperand = sumoperands[ 1 ];
+        //    var operationResult = getSumFactory.GetResult(firstOperand, secondOperand);
+        //    System.Console.Write($"{operationResult} with type: {getSumFactory.Type}");
+        //    return 0;
+        //}
 
         public static float GetSumMulti(float[ ] operands)
         {
@@ -45,19 +45,40 @@ namespace Calculator.Console.UI
             return 0;
         }
 
-        public static int GetSubs(string[ ] str)
+        public static int GetSumArguments(string[ ] sumoperands)
         {
-            var getSumFactory = FactoryGenerics.GetSubsGenericFactory();
-            if (str == null)
+            var getGenericSumFactory = FactoryGenerics.GetSumGenericFactory();
+            if (sumoperands == null)
             {
-                throw new ArgumentOutOfRangeException(nameof(str), "Should be not null.");
+                throw new ArgumentOutOfRangeException(nameof(sumoperands), "Should be not null.");
             }
-            var firstOperand = str[ 0 ];
-            var secondOperand = str[ 1 ];
+           // int[ ] parsedValues = new int[ sumoperands.Length ];
+           // Type type = sumoperands.GetType();
+
+            //if (type.Equals(typeof(int)))
+            //{
+            //for (int i = 0; i < sumoperands.Length; i++)
+            //{
+            //    if (Int32.TryParse(sumoperands[ i ], out parsedValues[ i ]))
+            //    {
+            //        System.Console.WriteLine(sumoperands[ i ]);
+            //    }
+            //    else
+            //    {
+
+            //    }
+            //}
+            //}
+
+            //var firstOperand = parsedValues[ 0 ];
+            //var secondOperand = parsedValues[ 1 ];
             //var result1 = new IntOperand(firstOperand);
             //var result2 = new IntOperand(secondOperand);
-            //var operationResult = getSumFactory.GetResultSubOperation(result1, result2);
-            //System.Console.Write($"{operationResult.Value} with type: {getSumFactory.GetType()}");
+            //var operationResult = getGenericSumFactory.GetResultOperation(result1, result2);
+            var res3 = RomanNumeric.ParseStringToNumber(sumoperands[ 0 ]);
+            var res4 = RomanNumeric.ParseStringToNumber(sumoperands[ 1 ]);
+            var opee = getGenericSumFactory.GetResultOperation(res3, res4);
+            System.Console.Write($"{opee.Value.Numerics} with type: {opee.GetType()}");
             return 0;
         }
     }
