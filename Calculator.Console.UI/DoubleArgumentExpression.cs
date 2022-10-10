@@ -5,19 +5,19 @@ namespace Calculator.Console.UI
 {
     public static class DoubleArgumentExpression
     {
-        //public static int GetSumTwo(float[ ] sumoperands)
-        //{
-        //    var getSumFactory = CalculatorOperations.Factory.SumTwoFactory();
-        //    if (sumoperands == null)
-        //    {
-        //        throw new ArgumentOutOfRangeException(nameof(sumoperands), "Should be not null.");
-        //    }
-        //    var firstOperand = sumoperands[ 0 ];
-        //    var secondOperand = sumoperands[ 1 ];
-        //    var operationResult = getSumFactory.GetResult(firstOperand, secondOperand);
-        //    System.Console.Write($"{operationResult} with type: {getSumFactory.Type}");
-        //    return 0;
-        //}
+        public static int GetSumTwo(float[ ] sumoperands)
+        {
+            var getSumFactory = CalculatorOperations.Factory.SumTwoFactory();
+            if (sumoperands == null)
+            {
+                throw new ArgumentOutOfRangeException(nameof(sumoperands), "Should be not null.");
+            }
+            var firstOperand = sumoperands[ 0 ];
+            var secondOperand = sumoperands[ 1 ];
+            var operationResult = getSumFactory.GetResult(firstOperand, secondOperand);
+            System.Console.Write($"{operationResult} with type: {getSumFactory.Type}");
+            return 0;
+        }
 
         public static float GetSumMulti(float[ ] operands)
         {
@@ -52,33 +52,38 @@ namespace Calculator.Console.UI
             {
                 throw new ArgumentOutOfRangeException(nameof(sumoperands), "Should be not null.");
             }
-           // int[ ] parsedValues = new int[ sumoperands.Length ];
-           // Type type = sumoperands.GetType();
+            int[ ] parsedValues = new int[ sumoperands.Length ];
+            int len = sumoperands.Length;
+            for (int i = 0; i < sumoperands.Length; i++)
+            {
+                len--;
+                if (int.TryParse(sumoperands[ i ], out parsedValues[ i ]))
+                {
 
-            //if (type.Equals(typeof(int)))
-            //{
-            //for (int i = 0; i < sumoperands.Length; i++)
-            //{
-            //    if (Int32.TryParse(sumoperands[ i ], out parsedValues[ i ]))
-            //    {
-            //        System.Console.WriteLine(sumoperands[ i ]);
-            //    }
-            //    else
-            //    {
-
-            //    }
-            //}
-            //}
-
-            //var firstOperand = parsedValues[ 0 ];
-            //var secondOperand = parsedValues[ 1 ];
-            //var result1 = new IntOperand(firstOperand);
-            //var result2 = new IntOperand(secondOperand);
-            //var operationResult = getGenericSumFactory.GetResultOperation(result1, result2);
-            var res3 = RomanNumeric.ParseStringToNumber(sumoperands[ 0 ]);
-            var res4 = RomanNumeric.ParseStringToNumber(sumoperands[ 1 ]);
-            var opee = getGenericSumFactory.GetResultOperation(res3, res4);
-            System.Console.Write($"{opee.Value.Numerics} with type: {opee.GetType()}");
+                    System.Console.WriteLine($"Len->{len}");
+                    var firstOperand = parsedValues[ 0 ];
+                    var secondOperand = parsedValues[ 1 ];
+                    var result1 = new IntOperand(firstOperand);
+                    var result2 = new IntOperand(secondOperand);
+                    if (len == 0)
+                    {
+                        var operationIntResult = getGenericSumFactory.GetResultOperation(result1, result2);
+                        System.Console.Write($"{operationIntResult.Value} with type->: {operationIntResult.GetType()}");
+                    }
+                }
+                else
+                {
+                    var first = RomanNumeric.ParseStringToNumber(sumoperands[ 0 ]).Numerics;
+                    var second = RomanNumeric.ParseStringToNumber(sumoperands[ 1 ]).Numerics;
+                    RomanNumeric roman = new RomanNumeric(first);
+                    RomanNumeric roman1 = new RomanNumeric(second);
+                    if (len == 0)
+                    {
+                        var operationClassResult = getGenericSumFactory.GetResultOperation(roman, roman1);
+                        System.Console.Write($"{operationClassResult.Value.Numerics} with type: {operationClassResult.GetType()}");
+                    }
+                }
+            }
             return 0;
         }
     }
