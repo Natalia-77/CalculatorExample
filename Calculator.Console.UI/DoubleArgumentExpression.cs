@@ -60,7 +60,7 @@ namespace Calculator.Console.UI
                 if (int.TryParse(sumoperands[ i ], out parsedValues[ i ]))
                 {
 
-                    System.Console.WriteLine($"Len->{len}");
+                    //System.Console.WriteLine($"Len->{len}");
                     var firstOperand = parsedValues[ 0 ];
                     var secondOperand = parsedValues[ 1 ];
                     var result1 = new IntOperand(firstOperand);

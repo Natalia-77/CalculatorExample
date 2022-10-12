@@ -1,6 +1,4 @@
-﻿using Calculator.Generic;
-
-namespace CalculatorOperations.UnitTests
+﻿namespace CalculatorOperations.UnitTests
 {
     public class DivideTests
     {
@@ -21,14 +19,6 @@ namespace CalculatorOperations.UnitTests
             var operation = Factory.MultiOperandsFactory();
             var actual = operation.GetResult(numbers);
             Assert.Equal(result, actual);
-        }
-
-        [Theory]
-        [InlineData("IV", 4)]
-        public void CheckResultParseRomanToAradNumber(string roman, int arab)
-        {
-            var actual =RomanNumeric.ParseStringToNumber(roman);
-            Assert.Equal(arab, actual.Numerics);
         }
 
     }
