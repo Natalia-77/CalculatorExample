@@ -20,5 +20,6 @@
             var actual = operation.GetResult(numbers);
             Assert.Equal(result, actual);
         }
+
     }
 }
