@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Calculator.Generic.INumber\Calculator.Generic.INumber.csproj" />
     <ProjectReference Include="..\Calculator.Generic\Calculator.Generic.csproj" />
     <ProjectReference Include="..\CalculatorOperations\CalculatorOperations.csproj" />
   </ItemGroup>

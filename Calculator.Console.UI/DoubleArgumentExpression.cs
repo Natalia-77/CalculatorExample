@@ -1,4 +1,6 @@
 ﻿using Calculator.Generic;
+using Calculator.Generic.INumber;
+
 namespace Calculator.Console.UI
 {
     public static class DoubleArgumentExpression
@@ -62,9 +64,11 @@ namespace Calculator.Console.UI
                     var secondOperand = parsedValues[ 1 ];
                     if (len == 0)
                     {
-                        var res = FactoryGenerics.OperationRes(new SimpleValueOperand<IntOperand>(new IntOperand(firstOperand)),
-                            new SimpleValueOperand<IntOperand>(new IntOperand(secondOperand)));
-                        System.Console.Write($"{res.Value.Val} with type: {res.Value.GetType().Name}");
+                        //var res = FactoryGenerics.OperationRes(new SimpleValueOperand<IntOperand>(new IntOperand(firstOperand)),
+                        //    new SimpleValueOperand<IntOperand>(new IntOperand(secondOperand)));
+                        //System.Console.Write($"{res.Value.Val} with type: {res.Value.GetType().Name}");
+                        var res = FactoryGenericsNumber.Add(firstOperand,secondOperand);
+                        System.Console.Write($"{res} with type: {res.GetType().Name}");
                     }
                 }
                 else
