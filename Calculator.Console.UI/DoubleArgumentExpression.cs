@@ -1,6 +1,4 @@
 ﻿using Calculator.Generic;
-using CalculatorOperations;
-
 namespace Calculator.Console.UI
 {
     public static class DoubleArgumentExpression
@@ -47,7 +45,6 @@ namespace Calculator.Console.UI
 
         public static int GetSumArguments(string[ ] sumoperands)
         {
-            var getGenericSumFactory = FactoryGenerics.GetSumGenericFactory();
             if (sumoperands == null)
             {
                 throw new ArgumentOutOfRangeException(nameof(sumoperands), "Should be not null.");
@@ -60,15 +57,14 @@ namespace Calculator.Console.UI
                 if (int.TryParse(sumoperands[ i ], out parsedValues[ i ]))
                 {
 
-                    //System.Console.WriteLine($"Len->{len}");
+                    System.Console.WriteLine($"Len->{len}");
                     var firstOperand = parsedValues[ 0 ];
                     var secondOperand = parsedValues[ 1 ];
-                    var result1 = new IntOperand(firstOperand);
-                    var result2 = new IntOperand(secondOperand);
                     if (len == 0)
                     {
-                        var operationIntResult = getGenericSumFactory.GetResultOperation(result1, result2);
-                        System.Console.Write($"{operationIntResult.Value} with type->: {operationIntResult.GetType()}");
+                        var res = FactoryGenerics.OperationRes(new SimpleValueOperand<IntOperand>(new IntOperand(firstOperand)),
+                            new SimpleValueOperand<IntOperand>(new IntOperand(secondOperand)));
+                        System.Console.Write($"{res.Value.Val} with type: {res.Value.GetType().Name}");
                     }
                 }
                 else
@@ -79,8 +75,8 @@ namespace Calculator.Console.UI
                     RomanNumeric roman1 = new RomanNumeric(second);
                     if (len == 0)
                     {
-                        var operationClassResult = getGenericSumFactory.GetResultOperation(roman, roman1);
-                        System.Console.Write($"{operationClassResult.Value.Numerics} with type: {operationClassResult.GetType()}");
+                        var operationClassResult = FactoryGenerics.OperationRes(roman, roman1);
+                        System.Console.Write($"{operationClassResult.Numerics} with type: {operationClassResult.GetType().Name}");
                     }
                 }
             }

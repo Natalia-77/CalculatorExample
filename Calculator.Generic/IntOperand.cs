@@ -1,25 +1,20 @@
 ﻿namespace Calculator.Generic
 {
-    public class IntOperand : Operand<int>
+    public class IntOperand : IOperand<IntOperand>
     {
-
-        public IntOperand(int operandType) : base(operandType)
+        public int Val { get; }
+        public IntOperand(int val)
         {
+            Val = val;
+        }
+        public static IntOperand operator +(IntOperand left, IntOperand right)
+        {
+            return new IntOperand(left.Val + right.Val);
         }
 
-        public override IOperand<int> Sum(IOperand<int> other)
+        public static IntOperand operator -(IntOperand left, IntOperand right)
         {
-            return new IntOperand(Value + other.Value);
-        }
-
-        public override IOperand<int> Divide(IOperand<int> other)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override IOperand<int> Subs(IOperand<int> other)
-        {
-            return new IntOperand(Value - other.Value);
+            return new IntOperand(left.Val - right.Val);
         }
     }
 }

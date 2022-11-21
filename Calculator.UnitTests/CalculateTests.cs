@@ -1,8 +1,5 @@
 ﻿using System.CommandLine;
-using CalculatorOperations;
-using System.CommandLine.NamingConventionBinder;
 using System.CommandLine.Parsing;
-using Calculator.Console.UI;
 
 namespace Calculator.UnitTests
 {
