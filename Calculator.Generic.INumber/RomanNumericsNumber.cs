@@ -1,8 +1,10 @@
 ﻿using System.Collections.ObjectModel;
+using System.Numerics;
 
-namespace Calculator.Generic
+namespace Calculator.Generic.INumber
 {
-    public class RomanNumeric : IOperand<RomanNumeric>
+    public class RomanNumericsNumber : IOperandNumber<RomanNumericsNumber>,
+        IAdditionOperators<RomanNumericsNumber, RomanNumericsNumber, RomanNumericsNumber>
     {
         public static readonly IReadOnlyDictionary<string, int> _dictionaryValues = new ReadOnlyDictionary<string, int>(new Dictionary<string, int>
         {
@@ -16,7 +18,7 @@ namespace Calculator.Generic
 
         });
         private int _numerics;
-        public RomanNumeric(int operandType)
+        public RomanNumericsNumber(int operandType)
         {
             _numerics = operandType;
         }
@@ -26,24 +28,24 @@ namespace Calculator.Generic
             init => _numerics = value < 0 ? throw new ArgumentException("Operand should be positive", nameof(value)) : value;
         }
 
-        public static RomanNumeric operator -(RomanNumeric left, RomanNumeric right)
+        public static RomanNumericsNumber operator -(RomanNumericsNumber left, RomanNumericsNumber right)
         {
             var resultSubs = left.Numerics - right.Numerics;
-            return new RomanNumeric(resultSubs);
+            return new RomanNumericsNumber(resultSubs);
         }
 
-        public static RomanNumeric operator +(RomanNumeric left, RomanNumeric right)
+        public static RomanNumericsNumber operator +(RomanNumericsNumber left, RomanNumericsNumber right)
         {
             var resultSum = left.Numerics + right.Numerics;
-            return new RomanNumeric(resultSum);
+            return new RomanNumericsNumber(resultSum);
         }
 
-        public static RomanNumeric ParseStringToNumber(string inputStr)
+        public static RomanNumericsNumber ParseStringToNumber(string inputStr)
         {
             string strToParse = inputStr.ToUpper();
             if (string.IsNullOrEmpty(inputStr))
             {
-                return new RomanNumeric(0);
+                return new RomanNumericsNumber(0);
             }
             int resultArabicNumber = 0;
             int count = 0;
@@ -69,8 +71,7 @@ namespace Calculator.Generic
                     resultArabicNumber += current;
                 }
             }
-            return new RomanNumeric(resultArabicNumber);
+            return new RomanNumericsNumber(resultArabicNumber);
         }
-
     }
 }

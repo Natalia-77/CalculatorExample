@@ -2,7 +2,8 @@
 
 namespace Calculator.Generic.INumber
 {
-    public class SimpleValueOperandNumber<T> : IOperandNumber<SimpleValueOperandNumber<T>> where T : INumber<T>
+    public class SimpleValueOperandNumber<T> : IOperandNumber<SimpleValueOperandNumber<T>>
+        where T : IAdditionOperators<T, T, T>, ISubtractionOperators<T, T, T>
     {
         public T Value { get; init; }
         public SimpleValueOperandNumber(T value)

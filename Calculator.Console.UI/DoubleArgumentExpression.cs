@@ -65,9 +65,9 @@ namespace Calculator.Console.UI
                     if (len == 0)
                     {
                         //var res = FactoryGenerics.OperationRes(new SimpleValueOperand<IntOperand>(new IntOperand(firstOperand)),
-                        //    new SimpleValueOperand<IntOperand>(new IntOperand(secondOperand)));
+                        //    new SimpleValueOperand<IntOperand>(new IntOperand(secondOperand)));//method for interface static members
                         //System.Console.Write($"{res.Value.Val} with type: {res.Value.GetType().Name}");
-                        var res = FactoryGenericsNumber.Add(firstOperand,secondOperand);
+                        var res = FactoryGenericsNumber.Sum(firstOperand, secondOperand);
                         System.Console.Write($"{res} with type: {res.GetType().Name}");
                     }
                 }
@@ -79,8 +79,9 @@ namespace Calculator.Console.UI
                     RomanNumeric roman1 = new RomanNumeric(second);
                     if (len == 0)
                     {
-                        var operationClassResult = FactoryGenerics.OperationRes(roman, roman1);
-                        System.Console.Write($"{operationClassResult.Numerics} with type: {operationClassResult.GetType().Name}");
+                        //var operationClassResult = FactoryGenerics.OperationRes(roman, roman1);//method for interface static members
+                        var operationClassResult = FactoryGenericsNumber.Sum(roman.Numerics, roman1.Numerics);
+                        System.Console.Write($"{operationClassResult} with type: {operationClassResult.GetType().Name}");
                     }
                 }
             }
