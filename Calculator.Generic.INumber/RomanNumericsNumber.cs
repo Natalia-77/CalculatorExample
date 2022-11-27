@@ -1,10 +1,10 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 
 namespace Calculator.Generic.INumber
 {
-    public class RomanNumericsNumber : IOperandNumber<RomanNumericsNumber>,
-        IAdditionOperators<RomanNumericsNumber, RomanNumericsNumber, RomanNumericsNumber>
+    public class RomanNumericsNumber : IAdditionOperators<RomanNumericsNumber, RomanNumericsNumber, RomanNumericsNumber>,IParsable<RomanNumericsNumber>
     {
         public static readonly IReadOnlyDictionary<string, int> _dictionaryValues = new ReadOnlyDictionary<string, int>(new Dictionary<string, int>
         {
@@ -40,10 +40,10 @@ namespace Calculator.Generic.INumber
             return new RomanNumericsNumber(resultSum);
         }
 
-        public static RomanNumericsNumber ParseStringToNumber(string inputStr)
+        public static RomanNumericsNumber Parse(string s, IFormatProvider? provider)
         {
-            string strToParse = inputStr.ToUpper();
-            if (string.IsNullOrEmpty(inputStr))
+            string strToParse = s.ToUpper();
+            if (string.IsNullOrEmpty(s))
             {
                 return new RomanNumericsNumber(0);
             }
@@ -72,6 +72,21 @@ namespace Calculator.Generic.INumber
                 }
             }
             return new RomanNumericsNumber(resultArabicNumber);
+        }
+
+        public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out RomanNumericsNumber result)
+        {
+            result = null;
+            if (s == null) { return false; }
+            try
+            {
+                result = Parse(s, provider);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Calculator.Generic;
-using Calculator.Generic.INumber;
+﻿using Calculator.Generic.INumber;
 
 namespace Calculator.Console.UI
 {
@@ -51,38 +50,25 @@ namespace Calculator.Console.UI
             {
                 throw new ArgumentOutOfRangeException(nameof(sumoperands), "Should be not null.");
             }
-            int[ ] parsedValues = new int[ sumoperands.Length ];
             int len = sumoperands.Length;
-            for (int i = 0; i < sumoperands.Length; i++)
-            {
-                len--;
-                if (int.TryParse(sumoperands[ i ], out parsedValues[ i ]))
-                {
+            int[ ] parsedValues = new int[ len ];
 
-                    System.Console.WriteLine($"Len->{len}");
-                    var firstOperand = parsedValues[ 0 ];
-                    var secondOperand = parsedValues[ 1 ];
-                    if (len == 0)
-                    {
-                        //var res = FactoryGenerics.OperationRes(new SimpleValueOperand<IntOperand>(new IntOperand(firstOperand)),
-                        //    new SimpleValueOperand<IntOperand>(new IntOperand(secondOperand)));//method for interface static members
-                        //System.Console.Write($"{res.Value.Val} with type: {res.Value.GetType().Name}");
-                        var res = FactoryGenericsNumber.Sum(firstOperand, secondOperand);
-                        System.Console.Write($"{res} with type: {res.GetType().Name}");
-                    }
+            for (int i = 0; i < len; i++)
+            {
+                if (sumoperands[ i ].isParsedValue<int>())
+                {
+                    var currentvalue = FactoryGenericsNumber.ParsedValue<int>(sumoperands[ i ]);
+                    parsedValues[ i ] = currentvalue;
                 }
                 else
                 {
-                    var first = RomanNumeric.ParseStringToNumber(sumoperands[ 0 ]).Numerics;
-                    var second = RomanNumeric.ParseStringToNumber(sumoperands[ 1 ]).Numerics;
-                    RomanNumeric roman = new RomanNumeric(first);
-                    RomanNumeric roman1 = new RomanNumeric(second);
-                    if (len == 0)
-                    {
-                        //var operationClassResult = FactoryGenerics.OperationRes(roman, roman1);//method for interface static members
-                        var operationClassResult = FactoryGenericsNumber.Sum(roman.Numerics, roman1.Numerics);
-                        System.Console.Write($"{operationClassResult} with type: {operationClassResult.GetType().Name}");
-                    }
+                    var currentvalue = FactoryGenericsNumber.ParsedValue<RomanNumericsNumber>(sumoperands[ i ]);
+                    parsedValues[ i ] = currentvalue.Numerics;
+                }
+                if (parsedValues[ parsedValues.Length - 1 ] is not 0)
+                {
+                    var result = FactoryGenericsNumber.Sum(parsedValues);
+                    System.Console.WriteLine($"Result: {result}");
                 }
             }
             return 0;

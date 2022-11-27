@@ -13,7 +13,7 @@ class Program
     {
         var argumentsSum = new Argument<string[ ]>("sumoperands")
         {
-            Arity = new ArgumentArity(2, 2)
+            Arity = new ArgumentArity(2, 4)
         };
         var arguments = new Argument<float[ ]>("operands")
         {
