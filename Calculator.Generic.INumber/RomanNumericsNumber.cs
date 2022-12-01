@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
+using System.Xml.Linq;
 
 namespace Calculator.Generic.INumber
 {
@@ -26,6 +27,11 @@ namespace Calculator.Generic.INumber
         {
             get => _numerics;
             init => _numerics = value < 0 ? throw new ArgumentException("Operand should be positive", nameof(value)) : value;
+        }
+        public override string ToString()
+        {
+            return Numerics.ToString();
+            
         }
 
         public static RomanNumericsNumber operator -(RomanNumericsNumber left, RomanNumericsNumber right)
