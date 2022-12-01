@@ -31,7 +31,6 @@ namespace Calculator.Generic.INumber
         public override string ToString()
         {
             return Numerics.ToString();
-            
         }
 
         public static RomanNumericsNumber operator -(RomanNumericsNumber left, RomanNumericsNumber right)
