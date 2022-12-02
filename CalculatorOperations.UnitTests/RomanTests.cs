@@ -14,12 +14,14 @@ namespace CalculatorOperations.UnitTests
         }
 
         [Theory]
-        [InlineData("IV", "4")]
-        public void ShowRomanToAradNumber(string roman, string expected)
+        [InlineData("V", "V")]
+        public void ShowRomanToAradNumber(string roman, string expectedResult)
         {
+            string res = string.Empty;
             var parsedRomanNumeric = RomanNumericsNumber.Parse(roman, null);
-            var parsedNumberToString = parsedRomanNumeric.ToString();
-            Assert.Equal(expected, parsedNumberToString);
+            parsedRomanNumeric.NumberRoman = res;
+            var actualResult = parsedRomanNumeric.ToString();
+            Assert.Equal(expectedResult, actualResult);
         }
     }
 }

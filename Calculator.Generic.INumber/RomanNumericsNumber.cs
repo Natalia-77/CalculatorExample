@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
-using System.Xml.Linq;
 
 namespace Calculator.Generic.INumber
 {
@@ -19,6 +18,7 @@ namespace Calculator.Generic.INumber
 
         });
         private int _numerics;
+        private string _numberRoman;
         public RomanNumericsNumber(int operandType)
         {
             _numerics = operandType;
@@ -28,9 +28,25 @@ namespace Calculator.Generic.INumber
             get => _numerics;
             init => _numerics = value < 0 ? throw new ArgumentException("Operand should be positive", nameof(value)) : value;
         }
+
+        public string NumberRoman
+        {
+            get => _numberRoman;
+            set
+            {
+                foreach (KeyValuePair<string, int> res in _dictionaryValues)
+                {
+                    if (res.Value == Numerics)
+                    {
+                        _numberRoman = res.Key;
+                    }
+                }
+            }
+
+        }
         public override string ToString()
         {
-            return Numerics.ToString();
+            return NumberRoman;
         }
 
         public static RomanNumericsNumber operator -(RomanNumericsNumber left, RomanNumericsNumber right)
