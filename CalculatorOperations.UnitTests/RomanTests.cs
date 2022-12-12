@@ -1,4 +1,5 @@
-﻿using Calculator.Generic;
+﻿using System;
+using Calculator.Generic;
 using Calculator.Generic.INumber;
 
 namespace CalculatorOperations.UnitTests
@@ -17,11 +18,19 @@ namespace CalculatorOperations.UnitTests
         [InlineData("V", "V")]
         public void ShowRomanToAradNumber(string roman, string expectedResult)
         {
-            string res = string.Empty;
             var parsedRomanNumeric = RomanNumericsNumber.Parse(roman, null);
-            parsedRomanNumeric.NumberRoman = res;
             var actualResult = parsedRomanNumeric.ToString();
             Assert.Equal(expectedResult, actualResult);
         }
+
+        [Theory]
+        [InlineData("test")]
+        public void ParseArabToNumber_InputInvalidAtring_ThrowsArgumentException(string input)
+        {
+            string expectedErrorMessage = "There is no such key";
+            var ex = Assert.Throws<ArgumentException>(() => RomanNumericsNumber.Parse(input, null));
+            Assert.Equal(expectedErrorMessage, ex.Message);
+        }
+
     }
 }

@@ -4,7 +4,7 @@ using System.Numerics;
 
 namespace Calculator.Generic.INumber
 {
-    public class RomanNumericsNumber : IAdditionOperators<RomanNumericsNumber, RomanNumericsNumber, RomanNumericsNumber>,IParsable<RomanNumericsNumber>
+    public class RomanNumericsNumber : IAdditionOperators<RomanNumericsNumber, RomanNumericsNumber, RomanNumericsNumber>, IParsable<RomanNumericsNumber>
     {
         public static readonly IReadOnlyDictionary<string, int> _dictionaryValues = new ReadOnlyDictionary<string, int>(new Dictionary<string, int>
         {
@@ -22,7 +22,10 @@ namespace Calculator.Generic.INumber
         public RomanNumericsNumber(int operandType)
         {
             _numerics = operandType;
+            _numberRoman = string.Empty;
+
         }
+
         public int Numerics
         {
             get => _numerics;
@@ -31,8 +34,7 @@ namespace Calculator.Generic.INumber
 
         public string NumberRoman
         {
-            get => _numberRoman;
-            set
+            get
             {
                 foreach (KeyValuePair<string, int> res in _dictionaryValues)
                 {
@@ -41,8 +43,8 @@ namespace Calculator.Generic.INumber
                         _numberRoman = res.Key;
                     }
                 }
+                return _numberRoman;
             }
-
         }
         public override string ToString()
         {
@@ -73,23 +75,32 @@ namespace Calculator.Generic.INumber
             int len = strToParse.Length;
             for (int i = 0; i <= len - 1; i++)
             {
-                var current = _dictionaryValues[ strToParse[ i ].ToString() ];
-                count++;
-                if (count < len)
+                var isExist = _dictionaryValues.ContainsKey(strToParse[ i ].ToString());
+                if (isExist)
                 {
-                    var next = _dictionaryValues[ strToParse[ i + 1 ].ToString() ];
-                    if (current < next)
+                    var current = _dictionaryValues[ strToParse[ i ].ToString() ];
+                    count++;
+                    if (count < len)
                     {
-                        resultArabicNumber -= current;
+                        var next = _dictionaryValues[ strToParse[ i + 1 ].ToString() ];
+                        if (current < next)
+                        {
+                            resultArabicNumber -= current;
+                        }
+                        else
+                        {
+                            resultArabicNumber += current;
+                        }
                     }
                     else
                     {
                         resultArabicNumber += current;
                     }
+
                 }
                 else
                 {
-                    resultArabicNumber += current;
+                    throw new ArgumentException("There is no such key");
                 }
             }
             return new RomanNumericsNumber(resultArabicNumber);
