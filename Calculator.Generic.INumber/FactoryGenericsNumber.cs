@@ -6,7 +6,7 @@ namespace Calculator.Generic.INumber
         public static T Sum<T>(IEnumerable<T> values) where T : INumber<T>
         {
             T sum = T.Zero;
-            foreach (var item in values)
+            foreach (T item in values)
             {
                 sum += item;
             }
@@ -15,7 +15,7 @@ namespace Calculator.Generic.INumber
 
         public static bool isParsedValue<T>(this string s) where T : IParsable<T>
         {
-            return T.TryParse(s, null, out T? result);
+            return T.TryParse(s, null, out _);
         }
 
         public static T ParsedValue<T>(string s) where T : IParsable<T>

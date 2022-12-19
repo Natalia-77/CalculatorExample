@@ -7,7 +7,7 @@ using System.CommandLine.Parsing;
 [assembly: NeutralResourcesLanguage("en")]
 namespace Calculator.Console.UI;
 
-class Program
+internal sealed class Program
 {
     static int Main(string[ ] args)
     {

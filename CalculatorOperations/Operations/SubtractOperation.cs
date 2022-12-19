@@ -1,8 +1,8 @@
-﻿using CalculatorOperations.Interfaces;
+﻿using CalculatorOperations.Operations.Interfaces;
 
 namespace CalculatorOperations.Operations
 {
-    internal class SubtractOperation : BaseOperation, ITwoOperandsOperation
+    internal sealed class SubtractOperation : BaseOperation, ITwoOperandsOperation
     {
         public SubtractOperation() : base(OperationType.Substract)
         {

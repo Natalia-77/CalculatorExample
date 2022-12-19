@@ -25,10 +25,10 @@ namespace CalculatorOperations.UnitTests
 
         [Theory]
         [InlineData("test")]
-        public void ParseArabToNumber_InputInvalidAtring_ThrowsArgumentException(string input)
+        public void ParseArabToNumberInputInvalidAtringThrowsArgumentException(string input)
         {
-            string expectedErrorMessage = "There is no such key";
-            var ex = Assert.Throws<ArgumentException>(() => RomanNumericsNumber.Parse(input, null));
+            var expectedErrorMessage = "There is no such key";
+            ArgumentException ex = Assert.Throws<ArgumentException>(() => RomanNumericsNumber.Parse(input, null));
             Assert.Equal(expectedErrorMessage, ex.Message);
         }
 

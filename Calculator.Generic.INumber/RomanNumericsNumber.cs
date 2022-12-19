@@ -6,7 +6,7 @@ namespace Calculator.Generic.INumber
 {
     public class RomanNumericsNumber : IAdditionOperators<RomanNumericsNumber, RomanNumericsNumber, RomanNumericsNumber>, IParsable<RomanNumericsNumber>
     {
-        public static readonly IReadOnlyDictionary<string, int> _dictionaryValues = new ReadOnlyDictionary<string, int>(new Dictionary<string, int>
+        public static readonly IReadOnlyDictionary<string, int> dictionaryValues = new ReadOnlyDictionary<string, int>(new Dictionary<string, int>
         {
             {"I",1 },
             {"V",5 },
@@ -36,7 +36,7 @@ namespace Calculator.Generic.INumber
         {
             get
             {
-                foreach (KeyValuePair<string, int> res in _dictionaryValues)
+                foreach (KeyValuePair<string, int> res in dictionaryValues)
                 {
                     if (res.Value == Numerics)
                     {
@@ -65,24 +65,24 @@ namespace Calculator.Generic.INumber
 
         public static RomanNumericsNumber Parse(string s, IFormatProvider? provider)
         {
-            string strToParse = s.ToUpper();
+            var strToParse = s.ToUpper();
             if (string.IsNullOrEmpty(s))
             {
                 return new RomanNumericsNumber(0);
             }
-            int resultArabicNumber = 0;
-            int count = 0;
-            int len = strToParse.Length;
-            for (int i = 0; i <= len - 1; i++)
+            var resultArabicNumber = 0;
+            var count = 0;
+            var len = strToParse.Length;
+            for (var i = 0; i <= len - 1; i++)
             {
-                var isExist = _dictionaryValues.ContainsKey(strToParse[ i ].ToString());
+                var isExist = dictionaryValues.ContainsKey(strToParse[ i ].ToString());
                 if (isExist)
                 {
-                    var current = _dictionaryValues[ strToParse[ i ].ToString() ];
+                    var current = dictionaryValues[ strToParse[ i ].ToString() ];
                     count++;
                     if (count < len)
                     {
-                        var next = _dictionaryValues[ strToParse[ i + 1 ].ToString() ];
+                        var next = dictionaryValues[ strToParse[ i + 1 ].ToString() ];
                         if (current < next)
                         {
                             resultArabicNumber -= current;

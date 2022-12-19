@@ -18,7 +18,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculatorOperations.UnitTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator.Generic", "Calculator.Generic\Calculator.Generic.csproj", "{D1D50D1B-5EF0-49A0-9F5D-7F4C1497E2A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Generic.INumber", "Calculator.Generic.INumber\Calculator.Generic.INumber.csproj", "{930BA0B1-078D-4AE5-A346-27E1214AF2BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator.Generic.INumber", "Calculator.Generic.INumber\Calculator.Generic.INumber.csproj", "{930BA0B1-078D-4AE5-A346-27E1214AF2BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
