@@ -140,12 +140,12 @@ csharp_prefer_simple_using_statement = true:suggestion
 csharp_style_namespace_declarations = block_scoped:silent
 csharp_style_prefer_method_group_conversion = true:silent
 csharp_space_between_empty_square_brackets = true
-csharp_space_between_square_brackets = true
+csharp_space_between_square_brackets = false
 csharp_style_expression_bodied_lambdas = true:silent
 csharp_style_expression_bodied_local_functions = false:silent
 csharp_style_prefer_null_check_over_type_check = true:suggestion
 csharp_style_prefer_local_over_anonymous_function = true:suggestion
-csharp_style_prefer_index_operator = true:suggestion
+csharp_style_prefer_index_operator = false
 csharp_style_prefer_range_operator = true:suggestion
 csharp_style_implicit_object_creation_when_type_is_apparent = true:suggestion
 csharp_style_prefer_tuple_swap = true:suggestion
@@ -160,6 +160,7 @@ csharp_style_prefer_switch_expression = true:suggestion
 csharp_style_prefer_pattern_matching = true:silent
 csharp_style_prefer_not_pattern = true:suggestion
 csharp_style_prefer_extended_property_pattern = true:suggestion
+dotnet_diagnostic.IDE0210.severity = none # IDE0210: convert to lol-level statements
 # IDE0005: Using directive is unnecessary
 #dotnet_diagnostic.IDE0005.severity = warning
 # IDE0055: Fix formatting

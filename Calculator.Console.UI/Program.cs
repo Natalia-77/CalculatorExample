@@ -2,14 +2,13 @@
 using System.CommandLine;
 using System.Resources;
 using System.CommandLine.Parsing;
+using Calculator.Console.UI;
 
 [assembly: CLSCompliant(true)]
 [assembly: NeutralResourcesLanguage("en")]
-namespace Calculator.Console.UI;
-
 internal sealed class Program
 {
-    static int Main(string[ ] args)
+    private static int Main(string[ ] args)
     {
         var argumentsSum = new Argument<string[ ]>("sumoperands")
         {
@@ -41,7 +40,7 @@ internal sealed class Program
         var commandSum = new Command("add")
         {
             argumentsSum
-            
+
         };
         commandSum.SetHandler(sumoperands => DoubleArgumentExpression.GetSumArguments(sumoperands), argumentsSum);
         commandMultiSum.SetHandler(operands => DoubleArgumentExpression.GetSumMulti(operands), arguments);
@@ -55,7 +54,6 @@ internal sealed class Program
            commandModule
         };
         return rootCommand.Invoke(args);
-
     }
 }
 

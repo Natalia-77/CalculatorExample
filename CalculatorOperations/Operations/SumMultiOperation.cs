@@ -15,7 +15,7 @@ namespace CalculatorOperations.Operations
 
             for (var i = 0; i < capacityQueue; i++)
             {
-                queueArguments.Enqueue(numbers[ i ]);
+                queueArguments.Enqueue(numbers[i]);
             }
             if (queueArguments.Count == 0)
             {

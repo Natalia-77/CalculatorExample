@@ -17,14 +17,14 @@ namespace Calculator.UnitTests
                new Argument<decimal>("first", "First argument "),
                new Argument<decimal>("second", "Second argument")
             };
-            var result = new Parser(command).Parse(values);
-            string? errorMessage = result.Errors.ToString();
-            bool isErrorExist = false;
+            ParseResult result = new Parser(command).Parse(values);
+            var errorMessage = result.Errors.ToString();
+            var isErrorExist = false;
             if (errorMessage != null)
             {
                 isErrorExist = true;
             }
-            bool isExpectError = true;
+            var isExpectError = true;
             Assert.Equal(isExpectError, isErrorExist);
         }
 
@@ -39,14 +39,14 @@ namespace Calculator.UnitTests
                new Argument<decimal>("first", "First argument "),
                new Argument<decimal>("second", "Second argument")
             };
-            var result = new Parser(command).Parse(values);
-            string? errorsMessage = result.Errors.ToString();
-            bool isErrorExist = false;
+            ParseResult result = new Parser(command).Parse(values);
+            var errorsMessage = result.Errors.ToString();
+            var isErrorExist = false;
             if (errorsMessage != null)
             {
                 isErrorExist = true;
             }
-            bool isExpectError = true;
+            var isExpectError = true;
             Assert.Equal(isExpectError, isErrorExist);
         }
     }
