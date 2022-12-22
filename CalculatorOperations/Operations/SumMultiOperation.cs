@@ -2,7 +2,7 @@
 
 namespace CalculatorOperations.Operations
 {
-    internal class SumMultiOperation : BaseOperation, IMultiOperandsOperation
+    internal sealed class SumMultiOperation : BaseOperation, IMultiOperandsOperation
     {
         public SumMultiOperation() : base(OperationType.Sum)
         {
@@ -10,10 +10,10 @@ namespace CalculatorOperations.Operations
         }
         public float GetResult(float[ ] numbers)
         {
-            int capacityQueue = numbers.Length;
-            Queue<float> queueArguments = new Queue<float>(capacityQueue);
+            var capacityQueue = numbers.Length;
+            var queueArguments = new Queue<float>(capacityQueue);
 
-            for (int i = 0; i < capacityQueue; i++)
+            for (var i = 0; i < capacityQueue; i++)
             {
                 queueArguments.Enqueue(numbers[ i ]);
             }
@@ -23,7 +23,7 @@ namespace CalculatorOperations.Operations
             }
             if (queueArguments.Count > 0)
             {
-                float res = queueArguments.Sum();
+                var res = queueArguments.Sum();
                 ShowExpression(queueArguments);
                 return res;
             }

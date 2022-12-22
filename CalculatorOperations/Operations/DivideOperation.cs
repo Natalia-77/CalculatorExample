@@ -1,8 +1,8 @@
-﻿using CalculatorOperations.Interfaces;
+﻿using CalculatorOperations.Operations.Interfaces;
 
 namespace CalculatorOperations.Operations
 {
-    internal class DivideOperation : BaseOperation, ITwoOperandsOperation
+    internal sealed class DivideOperation : BaseOperation, ITwoOperandsOperation
     {
         public DivideOperation() : base(OperationType.Divide)
         {

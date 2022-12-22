@@ -95,6 +95,9 @@ csharp_style_var_for_built_in_types = true:silent
 csharp_style_var_when_type_is_apparent = true:silent
 csharp_style_var_elsewhere = false:silent
 
+
+
+
 # Expression-bodied members
 csharp_style_expression_bodied_methods = false:silent
 csharp_style_expression_bodied_constructors = false:silent
@@ -174,7 +177,22 @@ csharp_style_prefer_pattern_matching = true:silent
 csharp_style_prefer_not_pattern = true:suggestion
 csharp_style_prefer_extended_property_pattern = true:suggestion
 
+
 # Default severity for analyzer diagnostics with the following categories (escalated to build warnings)
+
+# IDE0005: Using directive is unnecessary
+#dotnet_diagnostic.IDE0005.severity = warning
+# IDE0055: Fix formatting
+#dotnet_diagnostic.IDE0055.severity = warning
+# IDE0004: Remove Unnecessary Cast
+#dotnet_diagnostic.IDE0004.severity = warning
+###############################
+# VB Coding Conventions       #
+###############################
+#[*.vb]
+# Modifier preferences
+#visual_basic_preferred_modifier_order = Partial,Default,Private,Protected,Public,Friend,NotOverridable,Overridable,MustOverride,Overloads,Overrides,MustInherit,NotInheritable,Static,Shared,Shadows,ReadOnly,WriteOnly,Dim,Const,WithEvents,Widening,Narrowing,Custom,Async:suggestion
+
 dotnet_analyzer_diagnostic.category-Style.severity = warning
 dotnet_analyzer_diagnostic.category-Usage.severity = warning
 dotnet_analyzer_diagnostic.category-CodeQuality.severity = warning

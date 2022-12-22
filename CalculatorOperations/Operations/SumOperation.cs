@@ -1,8 +1,8 @@
-﻿using CalculatorOperations.Interfaces;
+﻿using CalculatorOperations.Operations.Interfaces;
 
 namespace CalculatorOperations.Operations
 {
-    internal class SumOperation : BaseOperation, ITwoOperandsOperation
+    internal sealed class SumOperation : BaseOperation, ITwoOperandsOperation
     {
         public SumOperation() : base(OperationType.Sum)
         {

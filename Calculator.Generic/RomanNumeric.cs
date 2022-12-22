@@ -4,7 +4,7 @@ namespace Calculator.Generic
 {
     public class RomanNumeric : IOperand<RomanNumeric>
     {
-        public static readonly IReadOnlyDictionary<string, int> _dictionaryValues = new ReadOnlyDictionary<string, int>(new Dictionary<string, int>
+        public static readonly IReadOnlyDictionary<string, int> dictionaryValues = new ReadOnlyDictionary<string, int>(new Dictionary<string, int>
         {
             {"I",1 },
             {"V",5 },
@@ -20,31 +20,10 @@ namespace Calculator.Generic
         {
             _numerics = operandType;
         }
-
-        public RomanNumeric Value => this;
         public int Numerics
         {
             get => _numerics;
             init => _numerics = value < 0 ? throw new ArgumentException("Operand should be positive", nameof(value)) : value;
-
-        }
-
-        public IOperand<RomanNumeric> Divide(IOperand<RomanNumeric> other)
-        {
-            var resDivide = Value / other.Value;
-            return new RomanNumeric(resDivide.Numerics);
-        }
-
-        public IOperand<RomanNumeric> Subs(IOperand<RomanNumeric> other)
-        {
-            var resultSubstract = Value - other.Value;
-            return new RomanNumeric(resultSubstract.Numerics);
-        }
-
-        public IOperand<RomanNumeric> Sum(IOperand<RomanNumeric> other)
-        {
-            var resultSumm = Value + other.Value;
-            return new RomanNumeric(resultSumm.Numerics);
         }
 
         public static RomanNumeric operator -(RomanNumeric left, RomanNumeric right)
@@ -59,29 +38,23 @@ namespace Calculator.Generic
             return new RomanNumeric(resultSum);
         }
 
-        public static RomanNumeric operator /(RomanNumeric left, RomanNumeric right)
-        {
-            var resultDivide = left.Numerics / right.Numerics;
-            return new RomanNumeric(resultDivide);
-        }
-
         public static RomanNumeric ParseStringToNumber(string inputStr)
         {
-            string strToParse = inputStr.ToUpper();
+            var strToParse = inputStr.ToUpper();
             if (string.IsNullOrEmpty(inputStr))
             {
                 return new RomanNumeric(0);
             }
-            int resultArabicNumber = 0;
-            int count = 0;
-            int len = strToParse.Length;
-            for (int i = 0; i <= len - 1; i++)
+            var resultArabicNumber = 0;
+            var count = 0;
+            var len = strToParse.Length;
+            for (var i = 0; i <= len - 1; i++)
             {
-                var current = _dictionaryValues[ strToParse[ i ].ToString() ];
+                var current = dictionaryValues[ strToParse[ i ].ToString() ];
                 count++;
                 if (count < len)
                 {
-                    var next = _dictionaryValues[ strToParse[ i + 1 ].ToString() ];
+                    var next = dictionaryValues[ strToParse[ i + 1 ].ToString() ];
                     if (current < next)
                     {
                         resultArabicNumber -= current;

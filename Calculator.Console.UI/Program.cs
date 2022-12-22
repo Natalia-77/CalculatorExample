@@ -7,13 +7,13 @@ using System.CommandLine.Parsing;
 [assembly: NeutralResourcesLanguage("en")]
 namespace Calculator.Console.UI;
 
-class Program
+internal sealed class Program
 {
     static int Main(string[ ] args)
     {
         var argumentsSum = new Argument<string[ ]>("sumoperands")
         {
-            Arity = new ArgumentArity(2, 2)
+            Arity = new ArgumentArity(2, 4)
         };
         var arguments = new Argument<float[ ]>("operands")
         {

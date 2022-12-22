@@ -1,12 +1,9 @@
 ﻿namespace Calculator.Generic
 {
-    public interface IOperand<T>
+    public interface IOperand<T> where T : IOperand<T>
     {
-        T Value { get; }
-        IOperand<T> Sum(IOperand<T> other);
-        //static operator
-        IOperand<T> Subs(IOperand<T> other);
-        IOperand<T> Divide(IOperand<T> other);
+        static abstract T operator +(T left, T right);
+        static abstract T operator -(T left, T right);
 
     }
 }

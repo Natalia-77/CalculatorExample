@@ -1,8 +1,8 @@
-﻿using CalculatorOperations.Interfaces;
+﻿using CalculatorOperations.Operations.Interfaces;
 
 namespace CalculatorOperations.Operations
 {
-    internal class ModuleOperation : BaseOperation, IOneOperandOperation
+    internal sealed class ModuleOperation : BaseOperation, IOneOperandOperation
     {
         public ModuleOperation() : base(OperationType.Module)
         {

@@ -1,6 +1,4 @@
-﻿using CalculatorOperations.Operations.Interfaces;
-
-namespace CalculatorOperations.Interfaces
+﻿namespace CalculatorOperations.Operations.Interfaces
 {
     public interface IOneOperandOperation : IOperation
     {
