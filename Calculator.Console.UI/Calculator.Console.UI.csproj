@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AnalysisLevel>latest-All</AnalysisLevel>
@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Calculator.Generic.INumber\Calculator.Generic.INumber.csproj" />
     <ProjectReference Include="..\Calculator.Generic\Calculator.Generic.csproj" />
     <ProjectReference Include="..\CalculatorOperations\CalculatorOperations.csproj" />
   </ItemGroup>
