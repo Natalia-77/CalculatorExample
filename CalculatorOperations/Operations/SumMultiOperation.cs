@@ -8,7 +8,7 @@ namespace CalculatorOperations.Operations
         {
 
         }
-        public float GetResult(float[ ] numbers)
+        public float GetResult(float[] numbers)
         {
             var capacityQueue = numbers.Length;
             var queueArguments = new Queue<float>(capacityQueue);

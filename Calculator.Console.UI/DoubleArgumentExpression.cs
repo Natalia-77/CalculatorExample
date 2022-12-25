@@ -4,7 +4,7 @@ namespace Calculator.Console.UI
 {
     public static class DoubleArgumentExpression
     {
-        public static int GetSumTwo(float[ ] sumoperands)
+        public static int GetSumTwo(float[] sumoperands)
         {
             CalculatorOperations.Operations.Interfaces.ITwoOperandsOperation getSumFactory = CalculatorOperations.Factory.SumTwoFactory();
             if (sumoperands == null)
@@ -18,7 +18,7 @@ namespace Calculator.Console.UI
             return 0;
         }
 
-        public static float GetSumMulti(float[ ] operands)
+        public static float GetSumMulti(float[] operands)
         {
             if (operands == null || operands.Length < 2)
             {
@@ -30,7 +30,7 @@ namespace Calculator.Console.UI
             return 0;//0-succ,1.2.3-error.
         }
 
-        public static int GetDivideTwoArgumentsCommand(float[ ] divideOperands)
+        public static int GetDivideTwoArgumentsCommand(float[] divideOperands)
         {
             CalculatorOperations.Operations.Interfaces.ITwoOperandsOperation getDivideFactory = CalculatorOperations.Factory.DivideFactory();
             if (divideOperands == null)
@@ -44,7 +44,7 @@ namespace Calculator.Console.UI
             return 0;
         }
 
-        public static int GetSumArguments(string[ ] sumoperands)
+        public static int GetSumArguments(string[] sumoperands)
         {
             if (sumoperands == null)
             {

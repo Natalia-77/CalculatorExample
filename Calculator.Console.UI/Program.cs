@@ -2,58 +2,59 @@
 using System.CommandLine;
 using System.Resources;
 using System.CommandLine.Parsing;
-using Calculator.Console.UI;
 
 [assembly: CLSCompliant(true)]
 [assembly: NeutralResourcesLanguage("en")]
-internal sealed class Program
+namespace Calculator.Console.UI
 {
-    private static int Main(string[ ] args)
+    internal sealed class Program
     {
-        var argumentsSum = new Argument<string[ ]>("sumoperands")
+        private static int Main(string[] args)
         {
-            Arity = new ArgumentArity(2, 4)
-        };
-        var arguments = new Argument<float[ ]>("operands")
-        {
-            Arity = new ArgumentArity(2, 3)
-        };
-        var argumentsDivide = new Argument<float[ ]>("divideOperands")
-        {
-            Arity = new ArgumentArity(2, 2)
-        };
-        var argumentModule = new Argument<float>("firstSingle", "Single argument");
+            var argumentsSum = new Argument<string[]>("sumoperands")
+            {
+                Arity = new ArgumentArity(2, 4)
+            };
+            var arguments = new Argument<float[]>("operands")
+            {
+                Arity = new ArgumentArity(2, 3)
+            };
+            var argumentsDivide = new Argument<float[]>("divideOperands")
+            {
+                Arity = new ArgumentArity(2, 2)
+            };
+            var argumentModule = new Argument<float>("firstSingle", "Single argument");
 
-        var commandMultiSum = new Command("mult")
-        {
-              arguments
-        };
-        var commandDivide = new Command("divide")
-        {
-            argumentsDivide
-        };
-        var commandModule = new Command("mod")
-        {
-            argumentModule
+            var commandMultiSum = new Command("mult")
+            {
+                  arguments
+            };
+            var commandDivide = new Command("divide")
+            {
+                argumentsDivide
+            };
+            var commandModule = new Command("mod")
+            {
+                argumentModule
 
-        };
-        var commandSum = new Command("add")
-        {
-            argumentsSum
+            };
+            var commandSum = new Command("add")
+            {
+                argumentsSum
 
-        };
-        commandSum.SetHandler(sumoperands => DoubleArgumentExpression.GetSumArguments(sumoperands), argumentsSum);
-        commandMultiSum.SetHandler(operands => DoubleArgumentExpression.GetSumMulti(operands), arguments);
-        commandDivide.SetHandler(divideOperands => DoubleArgumentExpression.GetDivideTwoArgumentsCommand(divideOperands), argumentsDivide);
-        commandModule.SetHandler(firstSingle => SingleArgumentExpression.GetSingleModuleArgumentsCommand(firstSingle), argumentModule);
-        var rootCommand = new RootCommand
-        {
-           commandSum,
-           commandMultiSum,
-           commandDivide,
-           commandModule
-        };
-        return rootCommand.Invoke(args);
+            };
+            commandSum.SetHandler(sumoperands => DoubleArgumentExpression.GetSumArguments(sumoperands), argumentsSum);
+            commandMultiSum.SetHandler(operands => DoubleArgumentExpression.GetSumMulti(operands), arguments);
+            commandDivide.SetHandler(divideOperands => DoubleArgumentExpression.GetDivideTwoArgumentsCommand(divideOperands), argumentsDivide);
+            commandModule.SetHandler(firstSingle => SingleArgumentExpression.GetSingleModuleArgumentsCommand(firstSingle), argumentModule);
+            var rootCommand = new RootCommand
+            {
+               commandSum,
+               commandMultiSum,
+               commandDivide,
+               commandModule
+            };
+            return rootCommand.Invoke(args);
+        }
     }
 }
-
