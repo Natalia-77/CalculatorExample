@@ -10,4 +10,8 @@
     <AnalysisLevel>latest-all</AnalysisLevel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Calculator.BaseClass.ParseRomanNumber\Calculator.BaseClass.ParseRomanNumber.csproj" />
+  </ItemGroup>
+
 </Project>

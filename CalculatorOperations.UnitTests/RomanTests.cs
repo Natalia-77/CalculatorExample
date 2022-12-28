@@ -26,7 +26,7 @@ namespace CalculatorOperations.UnitTests
         [InlineData("test")]
         public void ParseArabToNumberInputInvalidAtringThrowsArgumentException(string input)
         {
-            var expectedErrorMessage = "There is no such key";
+            var expectedErrorMessage = "Enter valid roman number";
             ArgumentException ex = Assert.Throws<ArgumentException>(() => RomanNumericsNumber.Parse(input, null));
             Assert.Equal(expectedErrorMessage, ex.Message);
         }
