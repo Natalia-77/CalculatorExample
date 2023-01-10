@@ -16,6 +16,15 @@ namespace CalculatorOperations.UnitTests
 
         [Theory]
         [InlineData("V", "V")]
+        public void ShowRomanNumericToAradNumber(string roman, string expectedResult)
+        {
+            var parsedRomanNumeric = RomanNumeric.ParseStringToNumber(roman);
+            var actualResult = parsedRomanNumeric.ToString();
+            Assert.Equal(expectedResult, actualResult);
+        }
+
+        [Theory]
+        [InlineData("V", "V")]
         public void ShowRomanToAradNumber(string roman, string expectedResult)
         {
             var parsedRomanNumeric = RomanNumericsNumber.Parse(roman, null);
