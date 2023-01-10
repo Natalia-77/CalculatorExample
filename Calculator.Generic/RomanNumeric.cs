@@ -3,7 +3,7 @@
 namespace Calculator.Generic
 {
     public class RomanNumeric : BaseParseRomanNumber, IOperand<RomanNumeric>
-    {   
+    {
         private int _numerics;
         public RomanNumeric(int operandType)
         {
@@ -29,8 +29,8 @@ namespace Calculator.Generic
         }
         public static RomanNumeric ParseStringToNumber(string inputStr)
         {
-            var rom = new RomanNumeric().GetNumeric(inputStr);
-            return new RomanNumeric(rom);
+            var roman = new RomanNumeric().GetNumeric(inputStr);
+            return new RomanNumeric(roman);
         }
 
     }
