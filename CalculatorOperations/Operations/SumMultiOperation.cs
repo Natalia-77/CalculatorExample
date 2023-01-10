@@ -8,14 +8,14 @@ namespace CalculatorOperations.Operations
         {
 
         }
-        public float GetResult(float[ ] numbers)
+        public float GetResult(float[] numbers)
         {
             var capacityQueue = numbers.Length;
             var queueArguments = new Queue<float>(capacityQueue);
 
             for (var i = 0; i < capacityQueue; i++)
             {
-                queueArguments.Enqueue(numbers[ i ]);
+                queueArguments.Enqueue(numbers[i]);
             }
             if (queueArguments.Count == 0)
             {
