@@ -1,5 +1,4 @@
-﻿using System;
-using Calculator.Generic;
+﻿using Calculator.Generic;
 using Calculator.Generic.INumber;
 
 namespace CalculatorOperations.UnitTests

@@ -50,11 +50,11 @@ namespace Calculator.Generic
             var len = strToParse.Length;
             for (var i = 0; i <= len - 1; i++)
             {
-                var current = dictionaryValues[ strToParse[ i ].ToString() ];
+                var current = dictionaryValues[strToParse[i].ToString()];
                 count++;
                 if (count < len)
                 {
-                    var next = dictionaryValues[ strToParse[ i + 1 ].ToString() ];
+                    var next = dictionaryValues[strToParse[i + 1].ToString()];
                     if (current < next)
                     {
                         resultArabicNumber -= current;
