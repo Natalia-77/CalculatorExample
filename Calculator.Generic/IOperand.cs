@@ -5,5 +5,8 @@
         static abstract T operator +(T left, T right);
         static abstract T operator -(T left, T right);
 
+        T Add(T left, T right);
+        T Subtract(T left, T right);
+
     }
 }

@@ -9,6 +9,7 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <AnalysisLevel>latest-all</AnalysisLevel>
     <IsPackable>false</IsPackable>
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,7 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Calculator.BaseClass.ParseRomanNumber\Calculator.BaseClass.ParseRomanNumber.csproj" />
     <ProjectReference Include="..\Calculator.Generic.INumber\Calculator.Generic.INumber.csproj" />
     <ProjectReference Include="..\Calculator.Generic\Calculator.Generic.csproj" />
     <ProjectReference Include="..\CalculatorOperations\CalculatorOperations.csproj" />

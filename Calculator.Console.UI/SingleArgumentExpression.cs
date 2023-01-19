@@ -2,7 +2,7 @@
 
 namespace Calculator.Console.UI
 {
-    internal sealed class SingleArgumentExpression
+    internal static class SingleArgumentExpression
     {
         public static int GetSingleModuleArgumentsCommand(float single)
         {

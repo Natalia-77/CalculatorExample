@@ -43,12 +43,40 @@ namespace Calculator.Generic.INumber
         }
         public static RomanNumericsNumber operator -(RomanNumericsNumber left, RomanNumericsNumber right)
         {
+            if (left == null || right == null)
+            {
+                throw new ArgumentNullException(nameof(right));
+            }
             var resultSubs = left.Numerics - right.Numerics;
             return new RomanNumericsNumber(resultSubs);
         }
         public static RomanNumericsNumber operator +(RomanNumericsNumber left, RomanNumericsNumber right)
         {
+            if (left == null || right == null)
+            {
+                throw new ArgumentNullException(nameof(right));
+            }
             var resultSum = left.Numerics + right.Numerics;
+            return new RomanNumericsNumber(resultSum);
+        }
+
+        public static RomanNumericsNumber Add(RomanNumericsNumber left, RomanNumericsNumber right)
+        {
+            if (left == null || right == null)
+            {
+                throw new ArgumentNullException(nameof(right));
+            }
+            var resultSum = left.Numerics + right.Numerics;
+            return new RomanNumericsNumber(resultSum);
+        }
+
+        public static RomanNumericsNumber Subtract(RomanNumericsNumber left, RomanNumericsNumber right)
+        {
+            if (left == null || right == null)
+            {
+                throw new ArgumentNullException(nameof(right));
+            }
+            var resultSum = left.Numerics - right.Numerics;
             return new RomanNumericsNumber(resultSum);
         }
         public static RomanNumericsNumber Parse(string s, IFormatProvider? provider)
@@ -67,7 +95,8 @@ namespace Calculator.Generic.INumber
             }
             catch
             {
-                return false;
+                throw new FormatException(nameof(s));
+                //return false;
             }
         }
     }

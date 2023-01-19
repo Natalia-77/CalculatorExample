@@ -41,11 +41,19 @@ namespace Calculator.Generic
         }
         public static RomanNumeric operator -(RomanNumeric left, RomanNumeric right)
         {
+            if (left == null || right == null)
+            {
+                throw new ArgumentNullException(nameof(left));
+            }
             var resultSubs = left.Numerics - right.Numerics;
             return new RomanNumeric(resultSubs);
         }
         public static RomanNumeric operator +(RomanNumeric left, RomanNumeric right)
         {
+            if (left == null || right == null)
+            {
+                throw new ArgumentNullException(nameof(left));
+            }
             var resultSum = left.Numerics + right.Numerics;
             return new RomanNumeric(resultSum);
         }
@@ -55,5 +63,24 @@ namespace Calculator.Generic
             return new RomanNumeric(roman);
         }
 
+        public RomanNumeric Subtract(RomanNumeric left, RomanNumeric right)
+        {
+            if (left == null || right == null)
+            {
+                throw new ArgumentNullException(nameof(left));
+            }
+            var resultSubs = left.Numerics - right.Numerics;
+            return new RomanNumeric(resultSubs);
+        }
+
+        public RomanNumeric Add(RomanNumeric left, RomanNumeric right)
+        {
+            if (left == null || right == null)
+            {
+                throw new ArgumentNullException(nameof(left));
+            }
+            var resultSum = left.Numerics + right.Numerics;
+            return new RomanNumeric(resultSum);
+        }
     }
 }

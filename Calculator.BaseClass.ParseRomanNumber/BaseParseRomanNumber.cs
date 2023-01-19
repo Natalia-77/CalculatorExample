@@ -16,25 +16,25 @@
         public IReadOnlyDictionary<string, int> DictionaryValues => _dictionaryValues;
         public int GetNumeric(string strInput)
         {
-            var strToParse = strInput.ToUpper();
-            if (string.IsNullOrEmpty(strInput))
+            //var strToParse = strInput.ToUpperInvariant();
+            if (strInput == null)
             {
-                throw new ArgumentException("Enter valid roman number");
+                throw new ArgumentNullException(nameof(strInput));
             }
             var resultArabicNumber = 0;
             var count = 0;
             var isNotExist = 0;
-            var len = strToParse.Length;
+            var len = strInput.Length;
 
             for (var i = 0; i <= len - 1; i++)
             {
-                var isExist = DictionaryValues.TryGetValue(strToParse[i].ToString(), out var resValue);
+                var isExist = DictionaryValues.TryGetValue(strInput[i].ToString(), out var resValue);
                 if (isExist)
                 {
                     count++;
                     if (count < len)
                     {
-                        var isNext = DictionaryValues.TryGetValue(strToParse[i + 1].ToString(), out var next);
+                        var isNext = DictionaryValues.TryGetValue(strInput[i + 1].ToString(), out var next);
                         if (isNext)
                         {
                             if (resValue < next)

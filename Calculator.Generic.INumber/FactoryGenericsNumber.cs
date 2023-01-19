@@ -6,6 +6,10 @@ namespace Calculator.Generic.INumber
         public static T Sum<T>(IEnumerable<T> values) where T : INumber<T>
         {
             T sum = T.Zero;
+            if (values == null)
+            {
+                throw new ArgumentNullException(nameof(values));
+            }
             foreach (T item in values)
             {
                 sum += item;

@@ -10,12 +10,23 @@
 
         public static SimpleValueOperand<T> operator +(SimpleValueOperand<T> left, SimpleValueOperand<T> right)
         {
-            return new SimpleValueOperand<T>(left.Value + right.Value);
+            return left == null || right == null ? throw new ArgumentNullException(nameof(left)) : new SimpleValueOperand<T>(left.Value + right.Value);
+
         }
 
         public static SimpleValueOperand<T> operator -(SimpleValueOperand<T> left, SimpleValueOperand<T> right)
         {
-            return new SimpleValueOperand<T>(left.Value - right.Value);
+            return left == null || right == null ? throw new ArgumentNullException(nameof(left)) : new SimpleValueOperand<T>(left.Value - right.Value);
+        }
+
+        public SimpleValueOperand<T> Add(SimpleValueOperand<T> left, SimpleValueOperand<T> right)
+        {
+            return left == null || right == null ? throw new ArgumentNullException(nameof(left)) : new SimpleValueOperand<T>(left.Value + right.Value);
+        }
+
+        public SimpleValueOperand<T> Subtract(SimpleValueOperand<T> left, SimpleValueOperand<T> right)
+        {
+            return left == null || right == null ? throw new ArgumentNullException(nameof(left)) : new SimpleValueOperand<T>(left.Value - right.Value);
         }
     }
 }

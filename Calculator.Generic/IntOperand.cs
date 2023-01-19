@@ -9,12 +9,22 @@
         }
         public static IntOperand operator +(IntOperand left, IntOperand right)
         {
-            return new IntOperand(left.Val + right.Val);
+            return left == null || right == null ? throw new ArgumentNullException(nameof(left)) : new IntOperand(left.Val + right.Val);
         }
 
         public static IntOperand operator -(IntOperand left, IntOperand right)
         {
-            return new IntOperand(left.Val - right.Val);
+            return left == null || right == null ? throw new ArgumentNullException(nameof(left)) : new IntOperand(left.Val - right.Val);
+        }
+
+        public IntOperand Add(IntOperand left, IntOperand right)
+        {
+            return left == null || right == null ? throw new ArgumentNullException(nameof(left)) : new IntOperand(left.Val + right.Val);
+        }
+
+        public IntOperand Subtract(IntOperand left, IntOperand right)
+        {
+            return left == null || right == null ? throw new ArgumentNullException(nameof(left)) : new IntOperand(left.Val - right.Val);
         }
     }
 }
